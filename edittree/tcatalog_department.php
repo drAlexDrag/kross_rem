@@ -95,7 +95,7 @@ foreach($beans as $row)
   if ($row["sector_name"]==NULL) {
     $output.='';
   } else{
-   $output.='<li><a class="sectorcatalog" style="color:blue; cursor: pointer;" data-id="'.$row["sector_id"].'" data-name="'.$row["sector_name"].'" data-depid="'.$row["department_id"].'" data-depname="'.$row["department_name"].'" data-unitname="'.$row["unit_name"].'" data-unitid="'.$row["unit_id"].'">'.$row["sector_name"].'</li></a>';
+   $output.='<li><a onclick="sectorCatalog(this)" style="color:blue; cursor: pointer;" id="'.$row["sector_id"].'" data-name="'.$row["sector_name"].'" data-depid="'.$row["department_id"].'" data-depname="'.$row["department_name"].'" data-unitname="'.$row["unit_name"].'" data-unitid="'.$row["unit_id"].'">'.$row["sector_name"].'</li></a>';
  }
 
 }
