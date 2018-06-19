@@ -35,7 +35,7 @@ function sectorCatalog(sss){
   console.log(sss.id);
   var article = document.getElementById(sectorCatalog);
   var department_id = article.dataset.depid;
-  console.log("depid/"+sss.id);
+  console.log("sectorid/"+sss.id);
   var department_name = article.dataset.depname;
   var unit_id = article.dataset.unitid;
   var unit_name = article.dataset.unitname;

@@ -23,7 +23,13 @@ INNER JOIN filial ON catalog.filial_id = filial.id
 WHERE department.id=? AND unit.id=? AND sector.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [$department_id, $unit_id, $sector_id]);
 
  $output_nav .= '
- <div class="sector"><a href="#" onclick="loadData(1)"><span>Справочник телефонов <span class="glyphicon glyphicon-forward"></span></a><a class="unitcatalog" href="#" data-name="'.$unit_name.'"><span>'.$unit_name.' <span class="glyphicon glyphicon-forward"></span></a><a href="#" class="departmentcatalog" data-id="'.$department_id.'" data-name="'.$department_name.'" data-unitname="'.$unit_name.'" data-unitid="'.$unit_id.'"><span>'.$department_name.' <span class="glyphicon glyphicon-forward"></span></a><a href="#" class=" alert alert-info" style="color:blue; pointer-events: none">'.$sector_name.'</a></div><hr>';
+ <div class="sector">
+ <a href="#" onclick="loadData(1)"><span>Справочник телефонов <span class="glyphicon glyphicon-forward"></span></a>
+ <a onclick="unitCatalog(this)" id="'.$unit_name.'" name="'.$unit_name.'" href="#" data-name="'.$unit_name.'"><span>'.$unit_name.' <span class="glyphicon glyphicon-forward"></span></span></a>
+
+<a onclick="departmentCatalog(this)" href="#" id="'.$department_id.'" data-depname="'.$department_name.'" data-name="'.$unit_name.'" data-unitid="'.$unit_id.'"><span>'.$department_name.' <span class="glyphicon glyphicon-forward"></span></span></a>
+
+ <a href="#" class=" alert alert-info" style="color:blue; pointer-events: none">'.$sector_name.'</a></div><hr>';
   $output_sector .= '<div class="table-responsive" >
            <table class="table table-bordered table-hover">
                 <tr>

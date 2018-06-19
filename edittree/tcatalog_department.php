@@ -21,7 +21,11 @@ INNER JOIN filial ON catalog.filial_id = filial.id
 WHERE department.id=? AND unit.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [$department_id, $unit_id]);
 
  $output_nav .= '
- <div class="sector"><a href="#" onclick="loadData()"><span>Справочник телефонов <span class="glyphicon glyphicon-forward"></span></span></a><a onclick="unitCatalog(this)" id="'.$unit_name.'" name="'.$unit_name.'" href="#" data-name="'.$unit_name.'"><span>'.$unit_name.' <span class="glyphicon glyphicon-forward"></span></span></a><a href="#" class=" alert alert-info" style="color:blue; pointer-events: none">'.$department_name.'</a></div><hr>';
+ <div class="sector">
+ <a href="#" onclick="loadData()"><span>Справочник телефонов <span class="glyphicon glyphicon-forward"></span></span></a>
+ <a onclick="unitCatalog(this)" id="'.$unit_name.'" name="'.$unit_name.'" href="#" data-name="'.$unit_name.'"><span>'.$unit_name.' <span class="glyphicon glyphicon-forward"></span></span></a>
+ <a href="#" class=" alert alert-info" style="color:blue; pointer-events: none">'.$department_name.'</a>
+ </div><hr>';
     $output_department .= '<div class="table-responsive"><table class="table table-bordered table-hover">
                 <tr>
                 <th></th>
