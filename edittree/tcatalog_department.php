@@ -21,12 +21,14 @@ if(isset($_POST["department_id"]))
   $output_nav .= '
   <div class="sector">
   <a href="#" onclick="loadData()"><span>Справочник телефонов <span class="glyphicon glyphicon-forward"></span></span></a>
-  <a onclick="unitCatalog(this)" id="'.$unit_name.'" name="'.$unit_name.'" href="#" data-name="'.$unit_name.'"><span>'.$unit_name.' <span class="glyphicon glyphicon-forward"></span></span></a>
+  <a onclick="unitCatalog(this)" id="'.$unit_id.'" name="'.$unit_name.'" href="#"><span>'.$unit_name.' <span class="glyphicon glyphicon-forward"></span></span></a>
   <a href="#" class=" alert alert-info" style="color:blue; pointer-events: none">'.$department_name.'</a>
   </div><hr>';
-  $output_department .= '<div class="table-responsive"><table class="table table-bordered table-hover">
+  $output_department .= '
+  <div class="table-responsive"><h5>'.$department_name.'</h5>
+  <table class="table table-bordered table-hover">
   <tr>
-  <th></th>
+  <th><span class="dot-red"></span></th>
   <th>Абонент</th>
   <th>Телефон</th>
   <th>Филиал</th>
@@ -44,8 +46,8 @@ if(isset($_POST["department_id"]))
    <td>'.$row["vnutr"].'</td>';
    $output_department .= '
    <td>'.$row["filial_name"].'</td>
-   <td align="center"><button class="updown updown'.$row["vnutr"].'" id="upTree'.$row["vnutr"].'" data-action="upTree" data-name="'.$unit_name.'" data-id="'.$row["id"].'" data-depid="'.$department_id.'" data-depname="'.$department_name.'" data-unitid="'.$unit_id.'" data-unitdep="dep" hidden><span class="glyphicon glyphicon-arrow-up"></button></td>
-   <td align="center"><button class="updown updown'.$row["vnutr"].'" id="downTree'.$row["vnutr"].'" data-action="downTree" data-name="'.$unit_name.'" data-id="'.$row["id"].'" data-depid="'.$department_id.'" data-depname="'.$department_name.'" data-unitid="'.$unit_id.'" data-unitdep="dep"" hidden><span class="glyphicon glyphicon-arrow-down"></span></button></td>
+   <td align="center"><button class="updown updown'.$row["vnutr"].'" id="upTree'.$row["vnutr"].'" data-action="upTree" data-unitid="'.$unit_id.'" data-unitname="'.$unit_name.'" data-id="'.$row["id"].'" data-depid="'.$department_id.'" data-depname="'.$department_name.'" data-unitdep="dep" hidden><span class="glyphicon glyphicon-arrow-up"></button></td>
+   <td align="center"><button class="updown updown'.$row["vnutr"].'" id="downTree'.$row["vnutr"].'" data-action="downTree" data-unitid="'.$unit_id.'" data-unitname="'.$unit_name.'" data-id="'.$row["id"].'" data-depid="'.$department_id.'" data-depname="'.$department_name.'" data-unitdep="dep"" hidden><span class="glyphicon glyphicon-arrow-down"></span></button></td>
    <td>'.$row["weight"].'</td>
    </tr>
    ';
@@ -62,7 +64,8 @@ $beans = R::getAll('SELECT DISTINCT catalog.unit_id, catalog.department_id, cata
   WHERE unit.id=? AND department.id=? AND sector.id<>1', [$unit_id, $department_id]);
 if ($beans!=null){
   $output.= '<div class="row"><div class="col-sm-6">'.$output_department.'</div>';
-  $output.='<div class="col-sm-6 well"><ul>';
+  $output.='<h5>Доступные подразделения : </h5><div class="col-sm-6 well"><ul>';
+  // $output.='<div class="col-sm-6 well"><ul>';
 } else {
   $output.= '<div class="row"><div class="col-sm-12">'.$output_department.'</div></div>';
 }
@@ -71,7 +74,7 @@ foreach($beans as $row)
   if ($row["sector_name"]==NULL) {
     $output.='';
   } else{
-   $output.='<li><a onclick="sectorCatalog(this)" style="color:blue; cursor: pointer;" id="'.$row["sector_id"].'" data-name="'.$row["sector_name"].'" data-depid="'.$row["department_id"].'" data-depname="'.$row["department_name"].'" data-unitname="'.$row["unit_name"].'" data-unitid="'.$row["unit_id"].'">'.$row["sector_name"].'</li></a>';
+   $output.='<li><a onclick="sectorCatalog(this)" style="color:blue; cursor: pointer;" id="'.$row["sector_id"].'" data-name="'.$row["sector_name"].'" data-depid="'.$row["department_id"].'" data-depname="'.$row["department_name"].'" data-unitid="'.$row["unit_id"].'" data-unitname="'.$row["unit_name"].'" >'.$row["sector_name"].'</li></a>';
  }
 }
 $output.='</ul></div></div>';

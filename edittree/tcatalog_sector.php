@@ -22,13 +22,13 @@ if(isset($_POST["sector_id"]))
   $output_nav .= '
   <div class="sector">
   <a href="#" onclick="loadData(1)"><span>Справочник телефонов <span class="glyphicon glyphicon-forward"></span></a>
-  <a onclick="unitCatalog(this)" id="'.$unit_name.'" name="'.$unit_name.'" href="#" data-name="'.$unit_name.'"><span>'.$unit_name.' <span class="glyphicon glyphicon-forward"></span></span></a>
-  <a onclick="departmentCatalog(this)" href="#" id="'.$department_id.'" data-depname="'.$department_name.'" data-name="'.$unit_name.'" data-unitid="'.$unit_id.'"><span>'.$department_name.' <span class="glyphicon glyphicon-forward"></span></span></a>
+  <a onclick="unitCatalog(this)" id="'.$unit_id.'" name="'.$unit_name.'" href="#"><span>'.$unit_name.' <span class="glyphicon glyphicon-forward"></span></span></a>
+  <a onclick="departmentCatalog(this)" href="#" id="'.$department_id.'" data-depname="'.$department_name.'" data-unitid="'.$unit_id.'" data-unitname="'.$unit_name.'" ><span>'.$department_name.' <span class="glyphicon glyphicon-forward"></span></span></a>
   <a href="#" class=" alert alert-info" style="color:blue; pointer-events: none">'.$sector_name.'</a></div><hr>';
-  $output_sector .= '<div class="table-responsive" >
+  $output_sector .= '<div class="table-responsive" ><h5>'.$sector_name.'</h5>
   <table class="table table-bordered table-hover">
   <tr>
-  <th></th>
+  <th><span class="dot-red"></span></th>
   <th>Абонент</th>
   <th>Телефон</th>
   <th>Филиал</th>
@@ -46,8 +46,8 @@ if(isset($_POST["sector_id"]))
    <td>'.$row["vnutr"].'</td>';
    $output_sector .= '
    <td>'.$row["filial_name"].'</td>
-   <td align="center"><button class="updown updown'.$row["vnutr"].'" id="upTree'.$row["vnutr"].'" data-action="upTree" data-name="'.$unit_name.'" data-id="'.$row["id"].'" data-depid="'.$department_id.'" data-depname="'.$department_name.'" data-unitid="'.$unit_id.'" data-sectorid="'.$sector_id.'" data-sectorname="'.$sector_name.'" data-unitdep="sec" hidden><span class="glyphicon glyphicon-arrow-up"></button></td>
-   <td align="center"><button class="updown updown'.$row["vnutr"].'" id="downTree'.$row["vnutr"].'" data-action="downTree" data-name="'.$unit_name.'" data-id="'.$row["id"].'" data-depid="'.$department_id.'" data-depname="'.$department_name.'" data-unitid="'.$unit_id.'" data-sectorid="'.$sector_id.'" data-sectorname="'.$sector_name.'" data-unitdep="sec"" hidden><span class="glyphicon glyphicon-arrow-down"></span></button></td>
+   <td align="center"><button class="updown updown'.$row["vnutr"].'" id="upTree'.$row["vnutr"].'" data-action="upTree" data-unitid="'.$unit_id.'" data-unitname="'.$unit_name.'" data-id="'.$row["id"].'" data-depid="'.$department_id.'" data-depname="'.$department_name.'"  data-sectorid="'.$sector_id.'" data-sectorname="'.$sector_name.'" data-unitdep="sec" hidden><span class="glyphicon glyphicon-arrow-up"></button></td>
+   <td align="center"><button class="updown updown'.$row["vnutr"].'" id="downTree'.$row["vnutr"].'" data-action="downTree" data-unitid="'.$unit_id.'" data-unitname="'.$unit_name.'" data-id="'.$row["id"].'" data-depid="'.$department_id.'" data-depname="'.$department_name.'"  data-sectorid="'.$sector_id.'" data-sectorname="'.$sector_name.'" data-unitdep="sec"" hidden><span class="glyphicon glyphicon-arrow-down"></span></button></td>
    <td>'.$row["weight"].'</td>
    </tr>
    ';

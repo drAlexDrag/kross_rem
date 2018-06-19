@@ -2,24 +2,26 @@ $(document).ready(function(){
   loadData();
 });
 function unitCatalog(unit){
- var unit_name = aaa.name;
- var article = document.getElementById(unit_name);
+ var unit_id = unit.id;
+ var unit_name = unit.name;
+ // var article = document.getElementById(unit_id);
  $.ajax({
   url:"/edittree/tcatalog_unit.php",
   method:"POST",
-  data:{unit_name:unit_name},
+  data:{unit_id:unit_id, unit_name:unit_name},
   success:function(data){
    $('#container_p').html(data);
  }
 });
 }
-function departmentCatalog(ddd){
-  var departmentCatalog = ddd.id;
+function departmentCatalog(dep){
+  var departmentCatalog = dep.id;
   var article = document.getElementById(departmentCatalog);
   var department_id = article.id;
   var department_name = article.dataset.depname;
-  var unit_name = article.dataset.name;
   var unit_id = article.dataset.unitid;
+  var unit_name = article.dataset.unitname;
+  
   console.log(department_id);
   $.ajax({
     url:"/edittree/tcatalog_department.php",
@@ -69,7 +71,7 @@ $(document).on('click', '.updown', function(){
   var postarray=($(this).data("post"));
   var action=($(this).data('action'));
   var id=($(this).data("id"));
-  var unit_name = $(this).data("name");
+  var unit_name = $(this).data("unitname");
   var unit_id = $(this).data("unitid");
   var department_id = $(this).data("depid");
   var department_name = $(this).data("depname");
@@ -107,7 +109,7 @@ $(document).on('click', '.updown', function(){
         $.ajax({
           url:"/edittree/tcatalog_unit.php",
           method:"POST",
-          data:{unit_name:unit_name},
+          data:{unit_id:unit_id, unit_name:unit_name},
           success:function(data){
            $('#container_p').html(data);
            rbSelect(rbId);
