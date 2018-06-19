@@ -1,7 +1,7 @@
 $(document).ready(function(){
   loadData();
 });
-function unitCatalog(aaa){
+function unitCatalog(unit){
  var unit_name = aaa.name;
  var article = document.getElementById(unit_name);
  $.ajax({
