@@ -1,0 +1,1 @@
+%progdir%\modules\php\%phpdriver%\php-win.exe -c %progdir%\userdata\temp\config\php.ini -q -f %sitedir%\bolvanka\dump\dump_baza.php
