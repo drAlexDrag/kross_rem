@@ -12,13 +12,14 @@ if(isset($_POST["department_id"]))
  $output_department = '';
  $output = '';
  $output_nav = '';
- $beans = R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility, catalog.weight
+ $beans = R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, sector.sector_name, catalog.cabinet, filial.filial_name, catalog.visibility, catalog.weight
 FROM catalog
 INNER JOIN sub ON catalog.sub_id = sub.id
 INNER JOIN unit ON catalog.unit_id = unit.id
 INNER JOIN department ON catalog.department_id = department.id
+INNER JOIN sector ON catalog.sector_id = sector.id
 INNER JOIN filial ON catalog.filial_id = filial.id
-WHERE department.id=? AND unit.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [$department_id, $unit_id]);
+WHERE department.id=? AND unit.id=? AND sector.id=1 AND visibility NOT IN ("0") ORDER BY weight DESC', [$department_id, $unit_id]);
 
  $output_nav .= '
  <div class="sector">
