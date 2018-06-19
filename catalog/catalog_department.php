@@ -65,7 +65,7 @@ foreach($beans as $row)
 
 
 
-// SECTOR LOAD
+// SECTOR LOAD подгрузка секторов, бюро и групп
 $beans = R::getAll('SELECT DISTINCT catalog.unit_id, catalog.department_id, catalog.sector_id, unit.id, unit.unit_name, department.id, department.department_name, sector.id, sector.sector_name
   FROM catalog
   INNER JOIN unit ON catalog.unit_id = unit.id
