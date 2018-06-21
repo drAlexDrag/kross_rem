@@ -4,6 +4,7 @@ $(document).ready(function(){
 function unitCatalog(unit){
  var unit_id = unit.id;
  var unit_name = unit.name;
+ console.log("unit_id/"+unit_id);
  // var article = document.getElementById(unit_id);
  $.ajax({
   url:"/edittree/tcatalog_unit.php",
@@ -21,8 +22,7 @@ function departmentCatalog(dep){
   var department_name = article.dataset.depname;
   var unit_id = article.dataset.unitid;
   var unit_name = article.dataset.unitname;
-  
-  console.log(department_id);
+  console.log("department_id/"+department_id);
   $.ajax({
     url:"/edittree/tcatalog_department.php",
     method:"POST",
@@ -32,20 +32,16 @@ function departmentCatalog(dep){
    }
  });
 }
-function sectorCatalog(sss){
-  var sectorCatalog = sss.id;
-  console.log(sss.id);
+function sectorCatalog(sector){
+  var sectorCatalog = sector.id;
+  console.log("sector_id/"+sector.id);
   var article = document.getElementById(sectorCatalog);
   var department_id = article.dataset.depid;
-  console.log("sectorid/"+sss.id);
   var department_name = article.dataset.depname;
   var unit_id = article.dataset.unitid;
   var unit_name = article.dataset.unitname;
   var sector_id = article.id;
   var sector_name = article.dataset.name;
-
-  
-  console.log(sectorCatalog);
   $.ajax({
     url:"/edittree/tcatalog_sector.php",
     method:"POST",
@@ -64,7 +60,7 @@ function loadData()
   }
 });
 }
-//UP
+//UP//DOWN
 $(document).on('click', '.updown', function(){
   var sd=$(this).attr("id");
   var rbId = parseInt(sd.replace(/\D+/g,""));

@@ -2,10 +2,11 @@
 require_once 'tconnect.php';
 if(isset($_POST["sector_id"]))
 {
+  
+  $unit_id=$_POST["unit_id"];
+  $unit_name=$_POST["unit_name"];
   $department_id=$_POST["department_id"];
   $department_name=$_POST["department_name"];
-  $unit_name=$_POST["unit_name"];
-  $unit_id=$_POST["unit_id"];
   $sector_id=$_POST["sector_id"];
   $sector_name=$_POST["sector_name"];
   $output_sector = '';
