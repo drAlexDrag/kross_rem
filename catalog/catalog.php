@@ -47,7 +47,7 @@
 $ip=$_SERVER["REMOTE_ADDR"];
 $hostname = gethostbyaddr ($ip);
 ?>
-<div class="row" style="padding-top: 55px">
+<div class="container-fluid" style="padding-top: 55px">
   <div class="col-md-12">
 <div class="col-md-3 preclass">
 <pre class="preclass">

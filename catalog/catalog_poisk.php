@@ -5,7 +5,7 @@
     <option selected  value="sub" checked>Абонент</option>
     <option  value="vnutr" >Телефон</option>
       </select><div class="input-group">
-        <input type="text" class="form-control"  name="log_n_tel" id="log_n_tel" placeholder="Строка поиска...">
+        <input style="min-width: 30vw" type="text" class="form-control"  name="log_n_tel" id="log_n_tel" placeholder="Строка поиска...">
       <div class="input-group-btn">
       <button class="btn btn-default" type="submit" id="poisk_spr"><i class="glyphicon glyphicon-search"></i></button>
     </div></div>
