@@ -17,13 +17,6 @@ if(isset($_POST["unit_name"]))
     INNER JOIN department ON catalog.department_id = department.id
     INNER JOIN filial ON catalog.filial_id = filial.id
     WHERE unit.id=? AND department.id=1 AND visibility NOT IN ("0") ORDER BY weight DESC', [$unit_id]);
-// $beans = R::getAll('SELECT catalog.id, catalog.sub_id, sub.sub_name, sub.id, catalog.vnutr, catalog.city, unit.id, unit.unit_name, department.id, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility
-// FROM catalog
-// INNER JOIN sub ON catalog.sub_id = sub.id
-// INNER JOIN unit ON catalog.unit_id = unit.id
-// INNER JOIN department ON catalog.department_id = department.id
-// INNER JOIN filial ON catalog.filial_id = filial.id
-// WHERE unit.id=? AND department.id=1 AND visibility NOT IN ("0") ORDER BY sub.id', [$unit_id]);
 
   $output_nav .='<div class="sector"><a href="#" onclick="loadData(1)"><span>Справочник телефонов <span class="glyphicon glyphicon-forward"></span></a><a href="#" class="alert alert-info" style="color:blue; pointer-events: none">'.$unit_name.'</a></div><hr>';
   $output_unit .= '
@@ -72,6 +65,7 @@ if(isset($_POST["unit_name"]))
  if ($beans!=null){
   // $output.='<!--h3 style="color:blue">'.$unit_name.fdfdfdf'</h3-->';
   $output .= '<div class="row"><div class="col-sm-6">'.$output_unit.'</div>';
+  // $output.='<h5>Доступные подразделения : </h5><div class="col-sm-6 well"><ul>';
   // $output .= '</div></div>';
    $output.='<div class="col-sm-6 well"><ul>';
 } else {

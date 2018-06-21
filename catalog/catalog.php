@@ -27,7 +27,7 @@
       </div>
       <ul class="nav navbar-nav">
         <li class="active"><a href="#" onclick="load_data(1)">Главная</a></li>
-        <li class="active"><a href="#" onclick="addBid()" id="select">Заявка на ремонт телефона</a></li>
+        <!-- <li class="active"><a href="#" onclick="addBid()" id="select">Заявка на ремонт телефона</a></li> -->
                    <li class="active">
              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Скачать справочник
               <span class="caret"></span></a>
@@ -38,7 +38,10 @@
             </li>
 
       </ul>
+      <div  id="poisk"></div>
     </div>
+
+
   </nav>
   <?php
 $ip=$_SERVER["REMOTE_ADDR"];
@@ -84,14 +87,17 @@ $hostname = gethostbyaddr ($ip);
     </div> -->
 
 <hr>
-    <div class="row" id="poisk">      <noscript>
+    <!-- <div class="row" id="poisk"> -->      
+      <noscript>
       <p class="alert alert-danger">Необходимо включить JAVASCRIPT в настройках браузера<br>
 Необходимо наличие установленного браузера:<br>
 Chrome  версии 49 и выше<br>
 Opera   версии 43 и выше<br>
 Firefox версии 46 и выше<br>
 Internet explorer 11 и выше<br></p>
-</noscript></div><hr>
+</noscript>
+<!-- </div> -->
+<!-- <hr> -->
 
 
     <div id="container_p">
