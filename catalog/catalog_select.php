@@ -3,11 +3,7 @@
 require_once 'connectcat.php';
  if (isset($_POST)) {
 $output = '';
- $log_n_tel= mysqli_real_escape_string($connect, $_POST["log_n_tel"]);
-      $param_poisk = mysqli_real_escape_string($connect, $_POST["param_poisk"]);
-switch ($param_poisk) {
-  case 'sub':
-    # code...
+$log_n_tel= mysqli_real_escape_string($connect, $_POST["log_n_tel"]);
   $strSQL="SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility
 FROM catalog
 INNER JOIN sub ON catalog.sub_id = sub.id
@@ -15,23 +11,7 @@ INNER JOIN unit ON catalog.unit_id = unit.id
 INNER JOIN department ON catalog.department_id = department.id
 INNER JOIN filial ON catalog.filial_id = filial.id
 WHERE sub.sub_name
-LIKE \"%".$log_n_tel."%\" AND visibility NOT IN ('0')";
-    break;
-
-  default:
-    # code...
-  $strSQL="SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility
-FROM catalog
-INNER JOIN sub ON catalog.sub_id = sub.id
-INNER JOIN unit ON catalog.unit_id = unit.id
-INNER JOIN department ON catalog.department_id = department.id
-INNER JOIN filial ON catalog.filial_id = filial.id
-WHERE $param_poisk
-LIKE \"%".$log_n_tel."%\" AND visibility NOT IN ('0')";
-    break;
-}
-
-
+LIKE \"%".$log_n_tel."%\" OR catalog.vnutr LIKE \"%".$log_n_tel."%\" AND visibility NOT IN ('0')";
 
    $result = mysqli_query($connect, $strSQL);// Выполнить запрос (набор данных $result содержит результат)
  $output .= '
@@ -40,7 +20,6 @@ LIKE \"%".$log_n_tel."%\" AND visibility NOT IN ('0')";
                 <tr>
                      <th>Абонент</th>
                      <th>Телефон</th>
-                     <!--th>Городской</th-->
                      <th>Управление</th>
                      <th>Отдел/Бюро</th>
                      <th>Кабинет</th>
@@ -56,7 +35,6 @@ LIKE \"%".$log_n_tel."%\" AND visibility NOT IN ('0')";
                 <tr>
                      <td class="info">'.$row["sub_name"].'</td>
                      <td>'.$row["vnutr"].'</td>
-                     <!--td>'.$row["city"].'</td-->
                      <td>'.$row["unit_name"].'</td>';
                      if (($row["department_name"])=="ND") {
                       $output .= '<td>'.$row["unit_name"].'</td>';
@@ -77,7 +55,7 @@ LIKE \"%".$log_n_tel."%\" AND visibility NOT IN ('0')";
  {
       $output .= '<tr>
                           <td colspan="7"><div style="border: 3px solid red; width: auto; height: auto; padding: 10px;" id="result_div_id">
-            <em>Данные по запросу не найдены</em>
+            <em>По запросу <strong>'.$log_n_tel.'</strong> ничего не найдено!</em>
         </div></td>
                      </tr>';
  }
@@ -90,15 +68,13 @@ LIKE \"%".$log_n_tel."%\" AND visibility NOT IN ('0')";
                 <tr>
                       <th width="20%">Абонент</th>
                      <th width="15%">Телефон</th>
-                     <!--th width="10%">Городской</th-->
                      <th width="15%">unit</th>
                      <th width="15%">department</th>
-
                      <th width="10%">filial</th>
                 </tr>';
                  $output .= '<tr>
                           <td colspan="7"><div style="border: 3px solid red; width: auto; height: auto; padding: 10px;" id="result_div_id">
-            <em>Данные по запросу не найдены!</em>
+            <em>По запросу <strong>'.$log_n_tel.'</strong> ничего не найдено!</em>
         </div></td>
                      </tr>';
  }

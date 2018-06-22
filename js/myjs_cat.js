@@ -97,11 +97,11 @@ $('#message_form').on("submit", function(event){
 
 function poisk_spr(){
   var log_n_tel =$("#log_n_tel").val();
-  var param_poisk =("param_poisk", form_poisk.param_poisk.value);
+  // var param_poisk =("param_poisk", form_poisk.param_poisk.value);
   $.ajax({
    url:"/catalog/catalog_select.php",
    method:"POST",
-   data:{log_n_tel:log_n_tel, param_poisk:param_poisk},
+   data:{log_n_tel:log_n_tel},//, param_poisk:param_poisk},
    dataType:"text",
    success:function(data){
     $('#container_p').html(data);
