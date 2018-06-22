@@ -28,16 +28,17 @@ if(isset($_SESSION['loginUser'])):?>
             <span class="dot-yellow"></span>
             <span class="dot-green"></span>
           Кроссовый Журнал</a>
+          <ul class="nav navbar-nav navbar-left"><li class="place navbar-form" id="area">
+              <?php require_once 'list_area.php'; ?>
+            </li></ul>
         </div>
 
         <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
-          <ul class="nav navbar-nav navbar-right">
-            <li class="place navbar-form" id="area">
-              <?php require_once 'list_area.php'; ?>
-            </li>
+          <ul class="nav navbar-nav navbar-left">
+            
 
             <li ><a href="#" onclick="fetchData(1)">Домой <span class="glyphicon glyphicon-home"></span></a></li>
-            <li ><a href="#" onclick="readBid()" id="counthref">Заявки</a><span class="label label-info" id="countbid"></span></li>
+            <!-- <li ><a href="#" onclick="readBid()" id="counthref">Заявки</a><span class="label label-info" id="countbid"></span></li> -->
 
             <li class="dropdown">
              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-phone-alt"></span></a>
@@ -65,7 +66,7 @@ if(isset($_SESSION['loginUser'])):?>
                 <!-- <li><a href="#" onclick="catalogFreeNumber()"><span>Свободные номера</span></a></li> -->
               </ul>
             </li>
-            <li class="dropdown">
+            <!-- <li class="dropdown">
              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Лог
               <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -75,7 +76,7 @@ if(isset($_SESSION['loginUser'])):?>
                 <li class="dropdown-header">Логи операций со справочником</li>
                 <li><a href="#"  onclick="readLogCatalog()"><span>Лог Справочника</span></a></li>
               </ul>
-            </li>
+            </li> -->
 
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">БД
@@ -93,6 +94,10 @@ if(isset($_SESSION['loginUser'])):?>
                 <li class="divider"></li>
                 <li class="dropdown-header">Резервное копирование БД</li>
                 <li><a href="#" onclick="dump()"><span>Сделать резервную копию БД</span></a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Лог работы</li>
+                <li><a href="#"  onclick="readLogData(1)"><span>Лог Данных</span></a></li>
+                <li><a href="#"  onclick="readLogCatalog()"><span>Лог Справочника</span></a></li>
               </ul>
 
             </li>
@@ -111,8 +116,9 @@ if(isset($_SESSION['loginUser'])):?>
                 </ul>
               </li>
               <li ><a href="#" id="printt">Печать <span class="glyphicon glyphicon-print"></span></a></li>
-              <li><a href="#" onclick="exitKross()">Выход <span class="glyphicon glyphicon-off"></span></a></li>
+              
             </ul>
+            <ul class="nav navbar-nav navbar-right"><li><a href="#" onclick="exitKross()">Выход <span class="glyphicon glyphicon-off"></span></a></li></ul>
             <!-- </div> -->
           </div>
         </nav>
