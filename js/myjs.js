@@ -1186,7 +1186,7 @@ function usersConfig() {
   header='<nav class="navbar navbar-default">\
   <div class="container-fluid">\
   <div class="navbar-header">\
-  <a href="#"  class="headerPage"><h4>Насптройка userov</h4></a>\
+  <a href="#"  class="headerPage"><h4>Настройка userov</h4></a>\
   </div>\
   </div>\
   </nav>';
