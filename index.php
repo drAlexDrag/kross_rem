@@ -126,7 +126,20 @@ if(isset($_SESSION['loginUser'])):?>
         <div class="container-fluid text-center" style="padding-top: 100px">
           <div class="row content">
             <div class="col-md-12 text-left">
-              <div class="row" id="top_header_left"></div>
+              <div class="row" id="top_header_left">
+
+                <nav class="navbar navbar-default">
+  <div class="container-fluid">
+  <div class="navbar-header">
+  <a href="#"><h4 id="header_area"></h4></a>
+  </div>
+  <ul class="nav navbar-nav navbar-right">
+  <li><a href="#" onclick="dataCRUD()">Добавить данные</a></li>
+  </ul>
+  </div>
+  </nav>
+
+              </div>
               <div class="row" id="poisk"></div><hr>
               <div id="container_k" class="collapse"></div>
               <div id="container_m"></div>

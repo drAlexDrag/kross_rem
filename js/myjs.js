@@ -195,16 +195,19 @@ function fetchData(page)//Загрузка начальной страницы
   $('#top_bottom').show();
   var area=paramArea()[0];
   var areaId=paramArea()[1];
-  header='<nav class="navbar navbar-default">\
-  <div class="container-fluid">\
-  <div class="navbar-header">\
-  <a href="#"><h4>Поиск по данным '+area+'</h4></a>\
-  </div>\
-  <ul class="nav navbar-nav navbar-right">\
-  <li><a href="#" onclick="dataCRUD()">Добавить данные</a></li>\
-  </ul>\
-  </div>\
-  </nav>';
+  // header='<nav class="navbar navbar-default">\
+  // <div class="container-fluid">\
+  // <div class="navbar-header">\
+  // <a href="#"><h4>Поиск по данным '+area+'</h4></a>\
+  // </div>\
+  // <ul class="nav navbar-nav navbar-right">\
+  // <li><a href="#" onclick="dataCRUD()">Добавить данные</a></li>\
+  // </ul>\
+  // </div>\
+  // </nav>';
+  // var header=$('#header_area').text();
+  // header=header+' '+area;
+  // console.log(header);
   $.ajax({
     url:"select.php",
     method:"POST",
@@ -213,7 +216,7 @@ function fetchData(page)//Загрузка начальной страницы
     success:function(data)
     {
       $('#container_p').html(data);
-      $('#top_header_left').html(header);
+      $('#header_area').html(area);
     },
     error:function(data)
     {
@@ -884,13 +887,14 @@ function catalogCRUD() {
 function readLogData(page)
 { 
   $("#container_m").html("");
-  header='<nav class="navbar navbar-default">\
-  <div class="container-fluid">\
-  <div class="navbar-header">\
-  <a href="#" data-www="logKross" class="headerPage"><h4>Лог Кросса</h4></a>\
-  </div>\
-  </div>\
-  </nav>';
+  header='Лог Кросса';
+  // '<nav class="navbar navbar-default">\
+  // <div class="container-fluid">\
+  // <div class="navbar-header">\
+  // <a href="#" data-www="logKross" class="headerPage"><h4>Лог Кросса</h4></a>\
+  // </div>\
+  // </div>\
+  // </nav>';
   poiskLog='<div class="form-group">\
   <div class="input-group">\
   <span class="input-group-addon">Поиск</span>\
@@ -904,7 +908,7 @@ function readLogData(page)
     success:function(data){
      $('#container_p').html(data);
 
-     $('#top_header_left').html(header);
+     $('#header_area').html(header);
      $('#poisk').html(poiskLog);
    }
  });
@@ -912,13 +916,14 @@ function readLogData(page)
 function readLogCatalog(page)
 { 
   $("#container_m").html("");
-  header='<nav class="navbar navbar-default">\
-  <div class="container-fluid">\
-  <div class="navbar-header">\
-  <a href="#" data-www="logCatalog" class="headerPage"><h4>Лог Справочника</h4></a>\
-  </div>\
-  </div>\
-  </nav>';
+  header='Лог Справочника';
+  // '<nav class="navbar navbar-default">\
+  // <div class="container-fluid">\
+  // <div class="navbar-header">\
+  // <a href="#" data-www="logCatalog" class="headerPage"><h4>Лог Справочника</h4></a>\
+  // </div>\
+  // </div>\
+  // </nav>';
   poiskLog='<div class="form-group">\
   <div class="input-group">\
   <span class="input-group-addon">Поиск</span>\
@@ -931,7 +936,7 @@ function readLogCatalog(page)
     data:{page:page},
     success:function(data){
      $('#container_p').html(data);
-     $('#top_header_left').html(header);
+     $('#header_area').html(header);
      $('#poisk').html(poiskLog);
    }
  });
