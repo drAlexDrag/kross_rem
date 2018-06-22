@@ -208,6 +208,7 @@ function fetchData(page)//Загрузка начальной страницы
   // var header=$('#header_area').text();
   // header=header+' '+area;
   // console.log(header);
+  var topnav='<a href="#" onclick="dataCRUD()">Добавить данные</a>';
   $.ajax({
     url:"select.php",
     method:"POST",
@@ -216,6 +217,7 @@ function fetchData(page)//Загрузка начальной страницы
     success:function(data)
     {
       $('#container_p').html(data);
+      $('#topnav_right').html(topnav);
       $('#header_area').html(area);
     },
     error:function(data)
@@ -728,31 +730,41 @@ $(document).on('click', '.data-name', function(){
 function catalogEdit(page)
 { 
   $('#container_m').html("");
-  header='<nav class="navbar navbar-default">\
-  <div class="container-fluid">\
-  <div class="navbar-header">\
-  <a href="#" data-www="redaktorCatalog" onclick="catalogEdit(1)" class="headerPage"><h4>Редактор справочника</h4></a>\
-  </div>\
-  <ul class="nav navbar-nav navbar-right">\
-  <li><a href="#" name="catalog_red" id="catalog_red" data-toggle="modal" onclick="catalogAdd()">Добавить абонента</a></li>\
-  <li class="dropdown">\
+  header='Редактировать справочник';
+  // '<nav class="navbar navbar-default">\
+  // <div class="container-fluid">\
+  // <div class="navbar-header">\
+  // <a href="#" data-www="redaktorCatalog" onclick="catalogEdit(1)" class="headerPage"><h4>Редактировать справочник</h4></a>\
+  // </div>\
+  // <ul class="nav navbar-nav navbar-right">\
+  // <li><a href="#" name="catalog_red" id="catalog_red" data-toggle="modal" onclick="catalogAdd()">Добавить абонента</a></li>\
+  // <li class="dropdown">\
+  // <a class="dropdown-toggle" data-toggle="dropdown" href="#">Обратная связь\
+  // <span class="caret"></span></a>\
+  // <ul class="dropdown-menu">\
+  // <li><a href="#" onclick="messageRead('+'0'+')" data-state="0">Новые сообщения</a></li>\
+  // <li><a href="#" onclick="messageRead('+'1'+')" data-state="1">Обработанные сообщения</a></li>\
+  // </ul>\
+  // </li>\
+  // </ul>\
+  // </div>\
+  // </nav>';
+  var topnav='<div><a href="#" name="catalog_red" id="catalog_red" data-toggle="modal" onclick="catalogAdd()">Добавить абонента</a>\
+  <div class="dropdown">\
   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Обратная связь\
   <span class="caret"></span></a>\
-  <ul class="dropdown-menu">\
-  <li><a href="#" onclick="messageRead('+'0'+')" data-state="0">Новые сообщения</a></li>\
-  <li><a href="#" onclick="messageRead('+'1'+')" data-state="1">Обработанные сообщения</a></li>\
-  </ul>\
-  </li>\
-  </ul>\
-  </div>\
-  </nav>';
+  <div class="dropdown-content">\
+  <a href="#" onclick="messageRead('+'0'+')" data-state="0">Новые сообщения</a>\
+  <a href="#" onclick="messageRead('+'1'+')" data-state="1">Обработанные сообщения</a>\
+  </div></div></div>';
   $.ajax({
     url:"catalogedit.php",
     method:"POST",
     data:{page:page},
     success:function(data){
      $('#container_p').html(data);
-     $('#top_header_left').html(header);
+     $('#topnav_right').html(topnav);
+     $('#header_area').html(header);
 
    }
  });

@@ -133,9 +133,13 @@ if(isset($_SESSION['loginUser'])):?>
   <div class="navbar-header">
   <a href="#"><h4 id="header_area"></h4></a>
   </div>
-  <ul class="nav navbar-nav navbar-right">
-  <li><a href="#" onclick="dataCRUD()">Добавить данные</a></li>
-  </ul>
+  <!-- <ul class="nav navbar-nav navbar-right">
+  <li> -->
+    <div class="topnav topnav-right" id="topnav_right">
+      <!-- <a href="#" onclick="dataCRUD()">Добавить данные</a> -->
+    </div>
+<!--   </li>
+  </ul> -->
   </div>
   </nav>
 
