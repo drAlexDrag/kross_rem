@@ -2,15 +2,16 @@
 require 'connect.php';
 ?>
 
-<div class="numberphone"><form>
-<!--   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#container_k">Показать карточку абонента</button> -->
-  <div class="form-group col-xs-3">
+<!-- <div class="numberphone"> -->
+  <form class="navbar-form navbar-left numberphone">
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#container_k">Показать карточку абонента</button>
+  <div class="form-group">
 <?php
 $phonetype=$_POST["phonetype"];
 $output = '';
 $number=R::getCol('SELECT number_name FROM '.$phonetype.' ORDER BY number_name');
 $numOfnumber = R::count( ''.$phonetype.'' );
-$output = '<select class="form-control" name="numberli" id="numberli" onchange="numberlive()">';
+$output = '<select class="form-control" style="min-width: 20vw" name="numberli" id="numberli" onchange="numberlive()">';
 
  foreach ($number as $row => $number ){
   // $output .= '<option value="'.$row.'" >'.$number.'</option><br>';
@@ -21,7 +22,7 @@ echo $output;
 echo('<p id="numOfnumber" hidden>'.$numOfnumber.'</p>');
     ?>
   </div>
-<div class="form-group col-xs-4">
+<div class="form-group">
       <button style="width: 100px; text-align: left;" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-up" id="numcountup"></span></button>
       <!-- <span style="width: 100px; text-align: center;" class="glyphicon glyphicon-more" id="more"></span> -->
       <button style="width: 100px; text-align: left;" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-down" id="numcountdown"></span></button>
@@ -29,7 +30,7 @@ echo('<p id="numOfnumber" hidden>'.$numOfnumber.'</p>');
 <!-- <span class="badge" id="numcount"></span> -->
 
   </form>
-</div>
+<!-- </div> -->
 
 
 

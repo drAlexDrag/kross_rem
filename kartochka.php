@@ -39,7 +39,7 @@ foreach($beans as $row)
   // print($output);
   // echo("\n");
  }
-$output.='<legend>Номер: '.$outputnumber.' '.$outputname.'</legend>';
+$output.='<h4>Номер телефона: '.$outputnumber.' Имя абонента: '.$outputname.'</h4>';
 
 
 // <div class="row">

@@ -146,7 +146,7 @@ if(isset($_SESSION['loginUser'])):?>
   </div>
   </nav>
               </div>
-             <!--  <div class="row" id="poisk"></div><hr> -->
+              <div id="container_nl"></div><hr>
               <div id="container_k" class="collapse"></div>
               <div id="container_m"></div>
               <div id="container_p"></div>

@@ -1238,17 +1238,22 @@ function usersConfig() {
  });
 }
 function number(phonetype) {
+   header='spisok-kartochka-test';
   $('#container_k').html("");
   $("#container_m").html("");
   $("#container_p").html("");
-  $('#top_header_left').html("");
+  $("#topnav_right").html('');
+  // $('#top_header_left').html("");
   console.log("Таблица : "+phonetype);
   $.ajax({
     url:"number.php",
     method:"POST",
     data:{phonetype:phonetype},
     success:function(data){
+     // $('#poisk').html(data);
+     $('#header_area').html(header);
      $('#poisk').html(data);
+
      numberlive();
    }
  });
@@ -1261,7 +1266,8 @@ function numberlive() {
   var paramPoisk="number";
   console.log(searchString+" : "+paramPoisk);
   $("#container_m").html("");
-  $('#top_header_left').html("");
+  $("#topnav_right").html('');
+  // $('#top_header_left').html("");
   $.ajax({
     url:"poisk_select.php",
     method:"POST",
