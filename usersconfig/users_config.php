@@ -16,13 +16,13 @@ if(isset($_POST["action"])) //Check value of $_POST["action"] variable value is 
   $output .= '
    <table class="table table-bordered">
     <tr>
-     <th width="20%">ID</th>
-     <th width="30%">Login</th>
-     <th width="10%">Password hash</th>
-     <th width="10%">Date of registration</th>
-     <th width="10%">Admin</th>
-     <th width="10%">Изменить</th>
-     <th width="10%">Удалить</th>
+     <th>ID</th>
+     <th>Имя</th>
+     <!--th width="10%">Password hash</th-->
+     <th>Дата регистрации</th>
+     <th>Admin</th>
+     <th>Изменить</th>
+     <th>Удалить</th>
     </tr>
   ';
   if($statement->rowCount() > 0)
@@ -33,11 +33,11 @@ if(isset($_POST["action"])) //Check value of $_POST["action"] variable value is 
     <tr>
      <td>'.$row["id"].'</td>
      <td>'.$row["login"].'</td>
-     <td>'.$row["password"].'</td>
+     <!--td>'.$row["password"].'</td-->
      <td>'.$row["reg_date"].'</td>
      <td>'.$row["admin"].'</td>
-     <td><button type="button" id="'.$row["id"].'" class="btn btn-warning btn-xs update">Update</button></td>
-     <td><button type="button" id="'.$row["id"].'" class="btn btn-danger btn-xs delete">Delete</button></td>
+     <td><button type="button" id="'.$row["id"].'" class="btn btn-warning btn-xs update">Изменить</button></td>
+     <td><button type="button" id="'.$row["id"].'" class="btn btn-danger btn-xs delete">Удалить</button></td>
     </tr>
     ';
    }
@@ -97,7 +97,7 @@ if(isset($_POST["action"])) //Check value of $_POST["action"] variable value is 
  {
   $statement = $connection->prepare(
    "UPDATE users 
-   SET login = :login, password = :password 
+   SET login = :login, password = :password, admin = :admin
    WHERE id = :id
    "
   );
@@ -105,7 +105,8 @@ if(isset($_POST["action"])) //Check value of $_POST["action"] variable value is 
    array(
     ':login' => $_POST["login"],
     ':password' => md5($_POST["password"]),
-    ':id'   => $_POST["id"]
+    ':id'   => $_POST["id"],
+    ':admin' => $_POST["useradmin"]
    )
   );
   if(!empty($result))

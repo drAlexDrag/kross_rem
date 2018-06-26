@@ -32,7 +32,7 @@ $(document).ready(function(){
   $('#login').val(''); //This will clear Modal first name textbox
   $('#password').val(''); //This will clear Modal last name textbox
   $('.modal-title').text("Создать пользователя"); //It will change Modal title to Create new Records
-  $('#action').val('Create'); //This will reset Button value ot Create
+  $('#action').val('Создать пользователя'); //This will reset Button value ot Create
  });
 
  //This JQuery code is for Click on Modal action button for Create new records or Update existing records. This code will use for both Create and Update of data through modal
@@ -73,7 +73,7 @@ $(document).ready(function(){
    success:function(data){
     $('#usersModal').modal('show');   //It will display modal on webpage
     $('.modal-title').text("Изменить запись"); //This code will change this class text to Update records
-    $('#action').val("Update");     //This code will change Button value to Update
+    $('#action').val("Изменить");     //This code will change Button value to Update
     $('#customer_id').val(id);     //It will define value of id variable to this customer id hidden field
     $('#login').val(data.login);  //It will assign value to modal first name texbox
     $('#password').val(data.password);  //It will assign value of modal last name textbox

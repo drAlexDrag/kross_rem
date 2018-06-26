@@ -107,7 +107,7 @@ if(isset($_SESSION['loginUser'])):?>
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <!-- <li><a href="#" onclick="usersConfig()"><span>Настройка пользователей</span></a></li> -->
+                  <li><a href="#" onclick="usersConfig()"><span>Настройка пользователей</span></a></li>
                   <!-- <li><a href="#" id="con"><span>Консоль</span></a></li> -->
                   <!-- <li><a href="#" id="napolnenie"><span>Наполнение справочника</span></a></li> -->
                   <!-- <li><a href="#" onclick="catalogEditTree()"><span>Порядок отображения абонентов</span></a></li> -->
@@ -136,13 +136,11 @@ if(isset($_SESSION['loginUser'])):?>
   </div>
 
 <div id="poisk"></div>
-  <!-- <ul class="nav navbar-nav navbar-right">
-  <li> -->
+
     <div class="topnav topnav-right" id="topnav_right">
-      <!-- <a href="#" onclick="dataCRUD()">Добавить данные</a> -->
+
     </div>
-<!--   </li>
-  </ul> -->
+
   </div>
   </nav>
               </div>

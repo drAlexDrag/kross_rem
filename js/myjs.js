@@ -1238,6 +1238,7 @@ function usersConfig() {
     url:"/usersconfig/users_show.php",
     success:function(data){
      $('#container_p').html(data);
+     $('#top_header_left').html('');
    }
  });
 }
