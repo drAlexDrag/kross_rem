@@ -208,7 +208,7 @@ function fetchData(page)//Загрузка начальной страницы
   // var header=$('#header_area').text();
   // header=header+' '+area;
   // console.log(header);
-  var topnav='<a href="#" onclick="dataCRUD()">Добавить данные</a>';
+  var topnav='<ul class="nav navbar-nav"><li><a href="#" onclick="dataCRUD()">Добавить данные</a><li><ul>';
   $.ajax({
     url:"select.php",
     method:"POST",
@@ -749,14 +749,14 @@ function catalogEdit(page)
   // </ul>\
   // </div>\
   // </nav>';
-  var topnav='<div><a href="#" name="catalog_red" id="catalog_red" data-toggle="modal" onclick="catalogAdd()">Добавить абонента</a>\
-  <div class="dropdown">\
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Обратная связь\
+  var topnav='<ul class="nav navbar-nav">\
+  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Обратная связь\
   <span class="caret"></span></a>\
-  <div class="dropdown-content">\
-  <a href="#" onclick="messageRead('+'0'+')" data-state="0">Новые сообщения</a>\
-  <a href="#" onclick="messageRead('+'1'+')" data-state="1">Обработанные сообщения</a>\
-  </div></div></div>';
+  <ul class="dropdown-menu">\
+  <li><a href="#" onclick="messageRead('+'0'+')" data-state="0">Новые сообщения</a></li>\
+  <li><a href="#" onclick="messageRead('+'1'+')" data-state="1">Обработанные сообщения</a></li>\
+  </ul></li><li><a href="#" name="catalog_red" id="catalog_red" data-toggle="modal" onclick="catalogAdd()">Добавить абонента</a></li>\
+  </ul>';
   $.ajax({
     url:"catalogedit.php",
     method:"POST",
@@ -907,19 +907,31 @@ function readLogData(page)
   // </div>\
   // </div>\
   // </nav>';
-  poiskLog='<div class="form-group">\
-  <div class="input-group">\
-  <span class="input-group-addon">Поиск</span>\
-  <input type="text" name="search_logkross" id="search_logkross" placeholder="Поиск по логу кроссового журнала" class="form-control" />\
+  // poiskLog='<div class="form-group">\
+  // <div class="input-group">\
+  // <span class="input-group-addon">Поиск</span>\
+  // <input type="text" name="search_logkross" id="search_logkross" placeholder="Поиск по логу кроссового журнала" class="form-control" />\
+  // </div>\
+  // </div>';
+poiskLog='<form class="navbar-form navbar-left">\
+  <div class="input-group" style="min-width: 50vw">\
+    <input type="text" name="search_logkross" id="search_logkross" placeholder="Поиск по логу кроссового журнала" class="form-control" />\
+    <div class="input-group-btn">\
+      <button class="btn btn-default" type="submit">\
+        <i class="glyphicon glyphicon-search"></i>\
+      </button>\
+    </div>\
   </div>\
-  </div>';
+</form>';
+
+
   $.ajax({
     url:"logkross.php",
     method:"POST",
     data:{page:page},
     success:function(data){
      $('#container_p').html(data);
-
+     $('#topnav_right').html('');
      $('#header_area').html(header);
      $('#poisk').html(poiskLog);
    }
@@ -936,18 +948,29 @@ function readLogCatalog(page)
   // </div>\
   // </div>\
   // </nav>';
-  poiskLog='<div class="form-group">\
-  <div class="input-group">\
-  <span class="input-group-addon">Поиск</span>\
-  <input type="text" name="search_logcatalog" id="search_logcatalog" placeholder="Поиск по логу справочника" class="form-control" />\
+  // poiskLog='<div class="form-group">\
+  // <div class="input-group">\
+  // <span class="input-group-addon">Поиск</span>\
+  // <input type="text" name="search_logcatalog" id="search_logcatalog" placeholder="Поиск по логу справочника" class="form-control" />\
+  // </div>\
+  // </div>';
+poiskLog='<form class="navbar-form navbar-left">\
+  <div class="input-group" style="min-width: 50vw">\
+    <input type="text" name="search_logcatalog" id="search_logcatalog" placeholder="Поиск по логу справочника" class="form-control" />\
+    <div class="input-group-btn">\
+      <button class="btn btn-default" type="submit">\
+        <i class="glyphicon glyphicon-search"></i>\
+      </button>\
+    </div>\
   </div>\
-  </div>';
+</form>';
   $.ajax({
     url:"logcatalog.php",
     method:"POST",
     data:{page:page},
     success:function(data){
      $('#container_p').html(data);
+     $('#topnav_right').html('');
      $('#header_area').html(header);
      $('#poisk').html(poiskLog);
    }

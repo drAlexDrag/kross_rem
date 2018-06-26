@@ -22,7 +22,7 @@
 
         <div class='form-group'>
   <div class="col-sm-12">
-          <input type='text' name='staAutoList' id='staAutoList' data-table='asd'  class='form-control input-sm autoListData'/>
+          <input type='text' name='staAutoList' id='staAutoList' data-table='asd'  class='form-control input-sm autoListData' placeholder="Поиск по id или имени..."/>
         </div>
 </div>
 

@@ -126,13 +126,16 @@ if(isset($_SESSION['loginUser'])):?>
         <div class="container-fluid text-center" style="padding-top: 100px">
           <div class="row content">
             <div class="col-md-12 text-left">
+
               <div class="row" id="top_header_left">
 
                 <nav class="navbar navbar-default">
   <div class="container-fluid">
-  <div class="navbar-header">
-  <a href="#"><h4 id="header_area"></h4></a>
+  <div class="navbar-header" style="min-width: 15vw">
+  <a class="navbar-brand" href="#" id="header_area"></a>
   </div>
+
+<div id="poisk"></div>
   <!-- <ul class="nav navbar-nav navbar-right">
   <li> -->
     <div class="topnav topnav-right" id="topnav_right">
@@ -142,9 +145,8 @@ if(isset($_SESSION['loginUser'])):?>
   </ul> -->
   </div>
   </nav>
-
               </div>
-              <div class="row" id="poisk"></div><hr>
+             <!--  <div class="row" id="poisk"></div><hr> -->
               <div id="container_k" class="collapse"></div>
               <div id="container_m"></div>
               <div id="container_p"></div>

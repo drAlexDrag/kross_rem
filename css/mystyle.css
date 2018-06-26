@@ -1,11 +1,11 @@
-﻿.topnav {
+﻿/*.topnav {
   overflow: hidden;
   background-color: #F8F8F8;
-}
+}*/
 .topnav-right {
   float: right;
 }
-.topnav a {
+/*.topnav a {
   float: left;
   color: #000000;
   text-align: center;
@@ -40,7 +40,7 @@
     background-color: inherit;
     font-family: inherit;
     margin: 0;
-}
+}*/
 /**/
 .sector {
   font-size: 1vw;
