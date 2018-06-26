@@ -217,6 +217,7 @@ function fetchData(page)//Загрузка начальной страницы
     success:function(data)
     {
       $('#container_p').html(data);
+      $("#container_k").html("");
       $('#topnav_right').html(topnav);
       $('#header_area').html(area);
     },
@@ -763,6 +764,7 @@ function catalogEdit(page)
     data:{page:page},
     success:function(data){
      $('#container_p').html(data);
+     $("#container_k").html("");
      $('#topnav_right').html(topnav);
      $('#header_area').html(header);
 
@@ -930,6 +932,7 @@ poiskLog='<form class="navbar-form navbar-left">\
     method:"POST",
     data:{page:page},
     success:function(data){
+      $("#container_k").html("");
      $('#container_p').html(data);
      $('#topnav_right').html('');
      $('#header_area').html(header);
@@ -969,6 +972,7 @@ poiskLog='<form class="navbar-form navbar-left">\
     method:"POST",
     data:{page:page},
     success:function(data){
+      $("#container_k").html("");
      $('#container_p').html(data);
      $('#topnav_right').html('');
      $('#header_area').html(header);
