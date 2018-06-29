@@ -1,0 +1,6 @@
+vendor/
+node_modules/
+fpdf/
+/composer.json
+/composer.lock
+/package-lock.json
