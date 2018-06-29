@@ -13,13 +13,14 @@ $titul = '';
 // Write some HTML code:
 
 $beansunit = R::getAll('SELECT * FROM unit WHERE unit_name IS NOT NULL AND id<>1 ORDER BY unit_name');
+$zagol.='<ul>';
   foreach($beansunit as $rowunit)
  {
      // $outputunit .='<h1>'.$rowunit["unit_name"].'</h1>';
-     // 
+     $zagol .='<li><a href="#'.$rowunit["unit_name"].'" >'.$rowunit["unit_name"].'</li></a>';
      $dataunit[]=$rowunit['id'];
  }
-    
+   $zagol.='</ul>';  
 // $dataunit = array(4, 7);
 // $debug->debug("подготовили массив управлений", null, LOG);
 
@@ -67,24 +68,27 @@ $output_department .= '<div style="width: 100%">
  $output_department='';
 
 }
-$output_unit.='<h1 style="text-align: center">'.$row['unit_name'].'</h1><br>';
+$output_unit.='<a name="'.$row['unit_name'].'"></a><h1 style="text-align: center">'.$row['unit_name'].'</h1><br>';
 $output_unit.=$output;
 $alloutput.=$output_unit;
 $output_unit='';
 $output='';
 
 }
-$titul='<div><h1 style="text-align: center">Справочник телефонов ОАО Интеграл</h1><div><br>';
-$mpdf->WriteHTML($titul);
-$mpdf->WriteHTML('<tocpagebreak />');
+$date = date('d/m/Y H:i:s', time());
+$titul='<div><a name="s12"></a><h1 style="text-align: center">Справочник телефонов ОАО Интеграл</h1><div><br>
+<p>Сформировано по состоянию на'.$date.'</p>';
+$titul.=$zagol;
+// $mpdf->WriteHTML($titul);
+// $mpdf->WriteHTML('<tocpagebreak />');
 // $print_out ='<h1 style="text-align: center">'.$row['unit_name'].'</h1><br>';
-// $print_out.=$titul;
+$print_out.=$titul;
 
 $print_out.=$alloutput;
 // $mpdf->SetHeader($row['unit_name']);
-$date = date('d/m/Y H:i:s', time());
+// $date = date('d/m/Y H:i:s', time());
 $mpdf->SetFooter($date);
-$mpdf->WriteHTML($print_out);
+$mpdf->WriteHTML($print_out.'<a href="#s12">sssss</a>');
 // Output a PDF file directly to the browser
 $mpdf->Output();//$mpdf->Output('catalog.pdf');
 // echo  $print_out;
