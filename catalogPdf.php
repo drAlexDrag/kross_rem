@@ -49,11 +49,7 @@ $beans=R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, 
 
 
 $output_department .= '<div style="width: 100%">
-    <table style="width: 100%">
-        <tr>
-            <th style="width: 80%">Абонент</th>
-            <th style="width: 20%">Телефон</th>
-        </tr>';
+    <table style="width: 100%">';
                 foreach($beans as $row)
  {
            $output_department .= '

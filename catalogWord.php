@@ -10,63 +10,88 @@ $titul = '';
 
 
 $beansunit = R::getAll('SELECT * FROM unit WHERE unit_name IS NOT NULL AND id<>1 ORDER BY unit_name');
-// $zagol.='<ul>';
+
   foreach($beansunit as $rowunit)
  {
-     // $outputunit .='<h1>'.$rowunit["unit_name"].'</h1>';
+
      $section->addListItem($rowunit["unit_name"]);
 
-     // $zagol .='<li><a href="#'.$rowunit["unit_name"].'" >'.$rowunit["unit_name"].'</li></a>';
-     // $dataunit[]=$rowunit['id'];
  }
-   // $zagol.='</ul>';  
-// $dataunit = array(4, 7);
-// $debug->debug("подготовили массив управлений", null, LOG);
+
+
+
 
 // foreach ($dataunit as $valueunit) {
-//     # code...
-// // $debug->debug($valueunit, null, LOG);
-// // $output_unit.='<h1 style="text-align: center">'.$valueunit.'</h1><br>';
+
 // $beansdep=R::getAll('SELECT DISTINCT department.id, department.department_name FROM catalog
 //     INNER JOIN unit ON catalog.unit_id = unit.id
 //     INNER JOIN department ON catalog.department_id = department.id
 //     WHERE unit.id=?   ORDER BY department.department_name', [$valueunit]);
 // foreach($beansdep as $rowdep){
-//     // $debug->debug("получаем список подразделений по управлению", null, LOG);
+
 // 	$dep[]=$row['id']; 
-// // }
 
+$beans=R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility
+    FROM catalog
+    INNER JOIN sub ON catalog.sub_id = sub.id
+    INNER JOIN unit ON catalog.unit_id = unit.id
+    INNER JOIN department ON catalog.department_id = department.id
+    INNER JOIN filial ON catalog.filial_id = filial.id
+    WHERE unit.id=? AND department.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [62, 1]);
 
-// // foreach ($dep as $rowdep){
-// $beans=R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility
-//     FROM catalog
-//     INNER JOIN sub ON catalog.sub_id = sub.id
-//     INNER JOIN unit ON catalog.unit_id = unit.id
-//     INNER JOIN department ON catalog.department_id = department.id
-//     INNER JOIN filial ON catalog.filial_id = filial.id
-//     WHERE unit.id=? AND department.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [$valueunit, $rowdep['id']]);
+$section->addText('Заголловок', $header);
+$fancyTableStyleName = 'Fancy Table';
+$fancyTableStyle = array('borderSize' => 6, 'borderColor' => '006699', 'cellMargin' => 80, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER);
+$fancyTableFirstRowStyle = array('borderBottomSize' => 18, 'borderBottomColor' => '0000FF', 'bgColor' => '66BBFF');
+$fancyTableCellStyle = array('valign' => 'center');
+$fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
+$fancyTableFontStyle = array('bold' => true);
+$phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
+$table = $section->addTable();
+foreach($beans as $row){
+// for ($r = 1; $r <= 1; $r++) {
+    $table->addRow();
+//     for ($c = 1; $c <= 1; $c++) {
+    	
+// $table->addCell(12000,  $fancyTableCellStyle)->addText("{$row["sub_name"]}", $fancyTableFontStyle);
+// $table->addCell(2750,  $fancyTableCellStyle)->addText("{$row["vnutr"]}");
+//     	}
+        
+//     }
+    $table->addCell(2000, $fancyTableCellStyle)->addText($row["sub_name"], $fancyTableFontStyle);
+$table->addCell(2000, $fancyTableCellStyle)->addText($row["vnutr"], $fancyTableFontStyle);
+}
 
+// $section->addText('Basic table', $header);
 
+// $table = $section->addTable();
+// for ($r = 1; $r <= 8; $r++) {
+//     $table->addRow();
+//     for ($c = 1; $c <= 2; $c++) {
+//         $table->addCell(1750)->addText("Row {$r}, Cell {$c}");
+//     }
+// }
 // $output_department .= '<div style="width: 100%">
 //     <table style="width: 100%">
 //         <tr>
 //             <th style="width: 80%">Абонент</th>
 //             <th style="width: 20%">Телефон</th>
 //         </tr>';
-//                 foreach($beans as $row)
-//  {
-//            $output_department .= '
-//         <tr>
-//             <td>'.$row["sub_name"].'</td>
-//             <td>'.$row["vnutr"].'</td>
-//         </tr>';
-//          }
-//  $output_department .= '</table></div>';
-//  $output.='<h2 style="color: blue">'.$row["department_name"].'</h2>';
-//  $output.=$output_department;
-//  $output_department='';
+ //                foreach($beans as $row)
+ // {
+ //           $output_department .= '
+ //        <tr>
+ //            <td>'.$row["sub_name"].'</td>
+ //            <td>'.$row["vnutr"].'</td>
+ //        </tr>';
+ //         }
+ // $output_department .= '</table></div>';
+ // $output.='<h2 style="color: blue">'.$row["department_name"].'</h2>';
+ // $output.=$output_department;
+ // $output_department='';
 
 // }
+// $section->addText($row['unit_name'], $header);
 // $output_unit.='<a name="'.$row['unit_name'].'"></a><h1 style="text-align: center">'.$row['unit_name'].'</h1><br>';
 // $output_unit.=$output;
 // $alloutput.=$output_unit;
@@ -79,9 +104,7 @@ $beansunit = R::getAll('SELECT * FROM unit WHERE unit_name IS NOT NULL AND id<>1
 // <p>Сформировано по состоянию на '.$date.'</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 // <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
 // $titul.=$zagol;
-// // $mpdf->WriteHTML($titul);
-// // $mpdf->WriteHTML('<tocpagebreak />');
-// // $print_out ='<h1 style="text-align: center">'.$row['unit_name'].'</h1><br>';
+
 // $print_out.=$titul;
 
 // $print_out.=$alloutput;
