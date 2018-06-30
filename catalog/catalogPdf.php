@@ -77,8 +77,7 @@ $output='';
 }
 $date = date('d/m/Y H:i:s', time());
 $titul='<div><h1 style="text-align: center">Справочник телефонов ОАО Интеграл</h1><div><br>
-<p>Сформировано по состоянию на '.$date.'</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
+<p>Сформировано по состоянию на'.$date.'</p>';
 $titul.=$zagol;
 // $mpdf->WriteHTML($titul);
 // $mpdf->WriteHTML('<tocpagebreak />');

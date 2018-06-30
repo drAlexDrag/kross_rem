@@ -273,6 +273,14 @@ function topFunction() {
 
 
   function countDownloads() {
+  //   $.ajax({
+  //   url: "catalogPdf.php",
+  //   cache: false,
+  //   dataType:"html",
+  //   success: function(data){
+  //     // $("#counthrefmess").append('<span class="badge" id="countmess">'+data+'</span>');
+  //   }
+  // });
     $.ajax({
       url: "countdownloads.php",
       cache: false,
