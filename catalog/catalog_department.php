@@ -18,7 +18,7 @@ INNER JOIN unit ON catalog.unit_id = unit.id
 INNER JOIN department ON catalog.department_id = department.id
 INNER JOIN sector ON catalog.sector_id = sector.id
 INNER JOIN filial ON catalog.filial_id = filial.id
-WHERE department.id=? AND unit.id=? AND sector.id=1 AND visibility NOT IN ("0") ORDER BY weight DESC', [$department_id, $unit_id]);
+WHERE department.id=? AND unit.id=? AND sector.id=1 AND visibility NOT IN ("0") ORDER BY weight DESC, sub_name', [$department_id, $unit_id]);
 
  $output_nav .= '
  <div class="sector"><a href="#" onclick="loadData(1)"><span>Справочник телефонов <span class="glyphicon glyphicon-forward"></span></a><a class="unitcatalog" href="#" data-name="'.$unit_name.'"><span>'.$unit_name.' <span class="glyphicon glyphicon-forward"></span></span></a><a href="#" class=" alert alert-info" style="color:blue; pointer-events: none">'.$department_name.'</a></div><hr>';
