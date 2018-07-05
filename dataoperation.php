@@ -1,4 +1,5 @@
 <?php
+// Файл обработки данных в таблице кросса
 require 'connect.php'; // подключаем скрипт
 if($_POST["action"] == "data_execute"){
 $data=$_POST;
@@ -24,6 +25,7 @@ $areaId=$_POST['areaId'];
 $message.='<br><label class="text-success">Результат обработки</label>';
 
 if (empty($dataId)) {
+  // Проверяем наличие данных на площадке(по id данных), если данные отсутствуют на площадке -> Добавляем
 	$data=R::dispense('krossdata');
 	$data->data=$dataKross;
 	$data->number=$dataNumber;
@@ -37,6 +39,7 @@ if (empty($dataId)) {
 	$message.= '<div class="alert alert-info" role="alert">Площадка: <strong>'.$areaName.'</strong><hr>Добавлены новые данные: <strong>'.$dataKross.'</strong></div>';
   $headertable="Добавлены новые данные";
   // R::exec( "SET @user_login='$loginName', @operation='Новая запись'");
+  // После добавления данных делаем запись в log файл
   $logkross=R::dispense('logkross');
   $logkross->data_id=$getinsertID;
   $logkross->data_name=$dataKross;
@@ -52,7 +55,9 @@ if (empty($dataId)) {
 	// $output = 'Добавляем';
 	// echo($output);
 } else {
+  // если данные отсутствуют на площадке -> Изменяем
 	$data = R::load( 'krossdata', $dataId ); //reloads our data
+  // Вносим в log файл старые данные
   $logkross=R::dispense('logkross');
   $logkross->data_id=$data->id;
   $logkross->data_name=$data->data;
@@ -65,6 +70,7 @@ if (empty($dataId)) {
   $logkross->user=$loginName;
   $logkross->operation="Даннные до изменения";
   R::store($logkross);
+  // Изменяем данные
 	$data->number=$dataNumber;
 	$data->comment=$dataComment;
 	$data->raspred=R::load('raspred', $raspredId);
@@ -76,6 +82,7 @@ if (empty($dataId)) {
 	$data->area=R::load('area', $areaId);
 	R::store($data);
   $data = R::load( 'krossdata', $dataId ); //reloads our data
+  // // После изменения данных делаем запись в log файл
   $logkross=R::dispense('logkross');
   $logkross->data_id=$data->id;
   $logkross->data_name=$data->data;
@@ -88,11 +95,9 @@ if (empty($dataId)) {
   $logkross->user=$loginName;
   $logkross->operation="Даннные после изменения";
   R::store($logkross);
-  // R::exec( "SET @user_login='$loginName', @operation='Данные обновлены'");
 	$message.= '<div class="alert alert-info" role="alert">Площадка: <strong>'.$areaName.'</strong><hr>Данные: <strong>'.$dataKross.'</strong> обновлены</div>';
   $headertable="Обновленные данные";
   if ($subId != $previousSubId) {
-  // R::exec("UPDATE krossdata SET   krossdata.sub_id = $subId WHERE krossdata.number='".$dataNumber."' AND krossdata.sub_id = $previousSubId");
     $idDataKross=R::getCol('SELECT id FROM krossdata WHERE krossdata.number=? AND krossdata.sub_id=?', [$dataNumber, $previousSubId]);
     foreach ($idDataKross as $row) {
       $data = R::load( 'krossdata', $row ); //reloads our data
@@ -240,6 +245,7 @@ $outputcatalog .=OutputTbodyCatalog($row);
 
 
 if($_POST["action"] == "data_autosearch"){
+  // Проверка данных на наличие по площадке
   if(isset($_POST["dataKross"]))
 {
   $output = '';
@@ -253,7 +259,7 @@ if($_POST["action"] == "data_autosearch"){
     INNER JOIN area ON krossdata.area_id = area.id
     WHERE krossdata.data=? AND area.area_name=?', [ $dataKross, $areaName ]);
 
-  //$output = '<ul class="list-unstyled">';
+
   foreach($beans as $row)
   {
     // if(strlen($row['number'])==0){
@@ -316,12 +322,12 @@ WHERE krossdata.data=?  AND area.area_name=?', [$_POST["data_id"], $_POST["area"
  }
 }
 if($_POST["action"] == "data_clear"){
+  // Очищаем данные
   $dataId=$_POST['dataId'];
   $areaId=$_POST['areaId'];
   $loginName=$_POST['loginName'];
   $typeSelectId=$_POST['typeSelectId'];
   $typeSelectName=$_POST['typeSelectName'];
-  // $dataId = R::getCol('SELECT id FROM krossdata WHERE krossdata.number=? AND krossdata.area_id=?', [$dataKross, $areaId]);
 $data=R::load('krossdata', $dataId);
 $logkross=R::dispense('logkross');
   $logkross->data_id=$data->id;
