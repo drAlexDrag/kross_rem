@@ -28,7 +28,7 @@ if(isset($_SESSION['loginUser'])):?>
             <span class="dot-red"></span>
             <span class="dot-yellow"></span>
             <span class="dot-green"></span>
-          Кроссовый Журнал</a> <audio id="myaudio" preload="auto">
+          Кроссовый Журнал</a> <!-- <audio id="myaudio" preload="auto">
            <source src="/1.ogg">
          Ваш браузер не поддерживает аудио при помощи html5.
          </audio><script>var myaudio = $("#myaudio")[0];
@@ -36,7 +36,7 @@ $("#asd a")
    .mouseenter(function() {
       myaudio.play();
    });
-</script>
+</script> -->
           <ul class="nav navbar-nav navbar-left"><li class="place navbar-form" id="area">
               <?php require_once 'list_area.php'; ?>
             </li></ul>
