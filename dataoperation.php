@@ -2,7 +2,7 @@
 // Файл обработки данных в таблице кросса
 require 'connect.php'; // подключаем скрипт
 if($_POST["action"] == "data_execute"){
-$data=$_POST;
+$dataPost=$_POST;//Весь пост в массив data
 $errors=array();
 $output = '';
 $message = '';
