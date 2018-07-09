@@ -32,7 +32,8 @@
              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Скачать справочник
               <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="../catalogPdf.php" onclick="countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> pdf</a></li>
+                <li><a href="#" onclick="countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> pdf</a></li>
+               <!--  <li><a href="../catalogPdf.php" onclick="countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> pdf</a></li> -->
                 <li><a href="/download/СПРАВОЧНИКV2.docx" onclick="countDownloads()"><img border="0" src="/images/docx.png" alt="W3Schools" width="32" height="32"> docx</a></li>
               </ul>
             </li>
@@ -101,7 +102,7 @@ Internet explorer 11 и выше<br></p>
 
 
     <div id="container_p">
-
+<img id="loadImg" src="/images/load.gif" />
 <?php
 require_once 'catalog_phone.php';?>
 

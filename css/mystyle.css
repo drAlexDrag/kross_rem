@@ -1,4 +1,7 @@
-﻿/*.topnav {
+﻿#loadImg{position:absolute; z-index:1000; display:none}
+
+
+/*.topnav {
   overflow: hidden;
   background-color: #F8F8F8;
 }*/
