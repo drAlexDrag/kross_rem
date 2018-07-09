@@ -277,8 +277,9 @@ function topFunction() {
   //   url: "catalogPdf.php",
   //   cache: false,
   //   dataType:"html",
+
   //   success: function(data){
-  //     // $("#counthrefmess").append('<span class="badge" id="countmess">'+data+'</span>');
+  //     $("body").append('<span class="badge" id="countmess">'+data+'</span>');
   //   }
   // });
     $.ajax({

@@ -9,7 +9,6 @@ $mpdf = new \Mpdf\Mpdf();
 $output = '';
 $output_department = '';
 $titul = '';
-// $print_out ='<h1 style="text-align: center">Заголовок</h1><br>';
 // Write some HTML code:
 
 $beansunit = R::getAll('SELECT * FROM unit WHERE unit_name IS NOT NULL AND id<>1 ORDER BY unit_name');
@@ -53,18 +52,18 @@ $output_department .= '<div style="width: 100%">
                 foreach($beans as $row)
  {
            $output_department .= '
-        <tr>
-            <td>'.$row["sub_name"].'</td>
-            <td>'.$row["vnutr"].'</td>
+        <tr style="width: 100%">
+            <td style="width: 80%">'.$row["sub_name"].'</td>
+            <td style="width: 20%">'.$row["vnutr"].'</td>
         </tr>';
          }
  $output_department .= '</table></div>';
- $output.='<h2 style="color: blue">'.$row["department_name"].'</h2>';
+ $output.='<h2 style="color: black">'.$row["department_name"].'</h2>';
  $output.=$output_department;
  $output_department='';
 
 }
-$output_unit.='<a name="'.$row['unit_name'].'"></a><h1 style="text-align: center">'.$row['unit_name'].'</h1><br>';
+$output_unit.='<a name="'.$row['unit_name'].'"></a><h1 style="text-align: center; color:blue">'.$row['unit_name'].'</h1><br>';
 $output_unit.=$output;
 $alloutput.=$output_unit;
 $output_unit='';
@@ -72,14 +71,24 @@ $output='';
 
 }
 $date = date('d/m/Y H:i:s', time());
-$titul='<div><h1 style="text-align: center">Справочник телефонов ОАО Интеграл</h1><div><br>
-<p>Сформировано по состоянию на '.$date.'</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
-$titul.=$zagol;
+// Титульная страница
+$mpdf->SetXY(100, 100);
+$titul='<div><h1 style="text-align: center">Справочник телефонов</h1><br><h1 style="text-align: center">ОАО Интеграл</h1></div>
+<p style="text-align: center">Сформировано по состоянию на '.$date.'</p>';
+// $titul='|Справочник телефонов ОАО Интеграл|';
+
+$mpdf->SetFooter('Сформировано по состоянию на||'.$date.'');
+$mpdf->WriteHTML($titul);
+// $mpdf->WriteText(50, 100, 'Сформировано по состоянию на '.$date.'');
+$mpdf->AddPage();
+$mpdf->SetFooter('');
+$mpdf->WriteHTML($zagol);
+$mpdf->AddPage();
+// $print_out.=$zagol;
 // $mpdf->WriteHTML($titul);
 // $mpdf->WriteHTML('<tocpagebreak />');
 // $print_out ='<h1 style="text-align: center">'.$row['unit_name'].'</h1><br>';
-$print_out.=$titul;
+// $print_out.=$titul;
 
 $print_out.=$alloutput;
 // $mpdf->SetHeader($row['unit_name']);
