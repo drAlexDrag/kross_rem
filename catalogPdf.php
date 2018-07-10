@@ -52,9 +52,10 @@ $output_department .= '<div style="width: 100%">
                 foreach($beans as $row)
  {
            $output_department .= '
-        <tr style="width: 100%">
-            <td style="width: 80%">'.$row["sub_name"].'</td>
-            <td style="width: 20%">'.$row["vnutr"].'</td>
+        <tr style="width: 100%">';
+            $output_department .= '<td style="width: 80%">'.$row["sub_name"].'</td>';
+
+            $output_department .= '<td style="width: 20%">'.$row["vnutr"].'</td>
         </tr>';
          }
  $output_department .= '</table></div>';
@@ -73,8 +74,9 @@ $output='';
 $date = date('d/m/Y H:i:s', time());
 // Титульная страница
 $mpdf->SetXY(100, 100);
-$titul='<div><h1 style="text-align: center">Справочник телефонов</h1><br><h1 style="text-align: center">ОАО Интеграл</h1></div>
-<p style="text-align: center">Сформировано по состоянию на '.$date.'</p>';
+$titul='<div><h1 style="text-align: center">Справочник телефонов</h1><br><h1 style="text-align: center">ОАО Интеграл</h1></div>';
+// $mpdf->Image('/images/alpha.jpg', 0, 0, 210, 297, 'jpg', '', true, true);
+$titul.='<p style="text-align: center">Сформировано по состоянию на '.$date.'</p>';
 // $titul='|Справочник телефонов ОАО Интеграл|';
 
 $mpdf->SetFooter('Сформировано по состоянию на||'.$date.'');

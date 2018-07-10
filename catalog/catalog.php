@@ -102,7 +102,7 @@ Internet explorer 11 и выше<br></p>
 
 
     <div id="container_p">
-<img id="loadImg" src="/images/load.gif" />
+<!-- <img id="loadImg" src="/images/load.gif" /> -->
 <?php
 require_once 'catalog_phone.php';?>
 
