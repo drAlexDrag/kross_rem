@@ -1,45 +1,25 @@
 <?php
 require_once 'vendor/autoload.php';
 require 'connect.php';
+require_once "phpdebug/phpdebug.php";//вывод в консоль
+$debug = new PHPDebug();
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
-$section = $phpWord->addSection();
+$section2 = $phpWord->addSection();
 
 $output = '';
 $output_department = '';
 $titul = '';
-
-
+$date = date('d/m/Y H:i:s', time());
+$paragraphStyleTit = array('align'=>'center', 'spaceBefore'=>3000);
+$paragraphStyleTit2 = array('align'=>'center');
+$fontStyleTit = array('color'=>'000000', 'size'=>34, 'bold'=>true);
+$fontStyleTit2 = array('color'=>'000000', 'size'=>14, 'bold'=>true);
+ $section2->addText('Справочник телефонов', $fontStyleTit, $paragraphStyleTit);
+ $section2->addText('ОАО Интеграл', $fontStyleTit, $paragraphStyleTit2);
+ $section2->addText('Сформировано по состоянию на '.$date.'', $fontStyleTit2, $paragraphStyleTit2);
 $beansunit = R::getAll('SELECT * FROM unit WHERE unit_name IS NOT NULL AND id<>1 ORDER BY unit_name');
-
-  foreach($beansunit as $rowunit)
- {
-
-     $section->addListItem($rowunit["unit_name"]);
-
- }
-
-
-
-
-// foreach ($dataunit as $valueunit) {
-
-// $beansdep=R::getAll('SELECT DISTINCT department.id, department.department_name FROM catalog
-//     INNER JOIN unit ON catalog.unit_id = unit.id
-//     INNER JOIN department ON catalog.department_id = department.id
-//     WHERE unit.id=?   ORDER BY department.department_name', [$valueunit]);
-// foreach($beansdep as $rowdep){
-
-// 	$dep[]=$row['id']; 
-
-$beans=R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility
-    FROM catalog
-    INNER JOIN sub ON catalog.sub_id = sub.id
-    INNER JOIN unit ON catalog.unit_id = unit.id
-    INNER JOIN department ON catalog.department_id = department.id
-    INNER JOIN filial ON catalog.filial_id = filial.id
-    WHERE unit.id=? AND department.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [62, 1]);
-
-$section->addText('Заголловок', $header);
+$section = $phpWord->addSection();
+////Стили
 $fancyTableStyleName = 'Fancy Table';
 $fancyTableStyle = array('borderSize' => 6, 'borderColor' => '006699', 'cellMargin' => 80, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER);
 $fancyTableFirstRowStyle = array('borderBottomSize' => 18, 'borderBottomColor' => '0000FF', 'bgColor' => '66BBFF');
@@ -47,70 +27,71 @@ $fancyTableCellStyle = array('valign' => 'center');
 $fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
 $fancyTableFontStyle = array('bold' => true);
 $phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
-$table = $section->addTable();
-foreach($beans as $row){
-// for ($r = 1; $r <= 1; $r++) {
-    $table->addRow();
-//     for ($c = 1; $c <= 1; $c++) {
-    	
-// $table->addCell(12000,  $fancyTableCellStyle)->addText("{$row["sub_name"]}", $fancyTableFontStyle);
-// $table->addCell(2750,  $fancyTableCellStyle)->addText("{$row["vnutr"]}");
-//     	}
-        
-//     }
-    $table->addCell(2000, $fancyTableCellStyle)->addText($row["sub_name"], $fancyTableFontStyle);
+$fontStyleUnit = array('color'=>'ff0000', 'size'=>22, 'bold'=>true);
+$fontStyleDepartment = array('color'=>'0000ff', 'size'=>18, 'bold'=>true);
+///Стили
+$debug->debug("List управлений Start", null, LOG);
+  foreach($beansunit as $rowunit)
+ {
+$debug->debug($rowunit["unit_name"], null, LOG);
+     $section->addListItem($rowunit["unit_name"]);
+     // $dataunit[]=$rowunit['id'];
+     $dataunit[] = array('id' =>$rowunit['id'] , 'unit_name' =>$rowunit["unit_name"]);
+
+ }
+ $debug->debug("List управлений END", null, LOG);
+// var_dump($dataunit);
+$debug->debug("Перебор управлепний для департаментов", null, LOG);
+foreach ($dataunit as $valueunit) {
+    $department_name="";
+$section->addText($valueunit['unit_name'], $fontStyleUnit);
+$debug->debug("Имя управления ".$valueunit["unit_name"], null, LOG);
+$beansdep=R::getAll('SELECT DISTINCT department.id, department.department_name FROM catalog
+    INNER JOIN unit ON catalog.unit_id = unit.id
+    INNER JOIN department ON catalog.department_id = department.id
+    WHERE unit.id=? AND visibility NOT IN ("0")  ORDER BY department.department_name', [$valueunit["id"]]);
+foreach($beansdep as $rowdep){
+$debug->debug(" Имя департамента ".$rowdep["department_name"], null, LOG);
+$department_name=$rowdep["department_name"];
+$section->addText($department_name, $fontStyleDepartment);
+
+    // $dep[]=$row['id'];
+// $debug->debug(" Имя департамента ".$rowdep["department_name"], null, LOG);
+$beans=R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility
+    FROM catalog
+    INNER JOIN sub ON catalog.sub_id = sub.id
+    INNER JOIN unit ON catalog.unit_id = unit.id
+    INNER JOIN department ON catalog.department_id = department.id
+    INNER JOIN filial ON catalog.filial_id = filial.id
+    WHERE unit.id=? AND department.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [$valueunit["id"], $rowdep['id']]);//WHERE unit.id=? AND department.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [$valueunit, $rowdep['id']])
+
+    //        $section->addText($row['unit_name']);
+    // $section->addText($row["department_name"]);  
+// $department_name=$row["department_name"];
+// $section->addText($department_name, $fontStyleDepartment);
+    $table = $section->addTable();
+    
+                foreach($beans as $row)
+       
+ { $table->addRow();
+$table->addCell(12000, $fancyTableCellStyle)->addText($row["sub_name"], $fancyTableFontStyle);
 $table->addCell(2000, $fancyTableCellStyle)->addText($row["vnutr"], $fancyTableFontStyle);
+         }
+
+
 }
 
-// $section->addText('Basic table', $header);
 
-// $table = $section->addTable();
-// for ($r = 1; $r <= 8; $r++) {
-//     $table->addRow();
-//     for ($c = 1; $c <= 2; $c++) {
-//         $table->addCell(1750)->addText("Row {$r}, Cell {$c}");
-//     }
-// }
-// $output_department .= '<div style="width: 100%">
-//     <table style="width: 100%">
-//         <tr>
-//             <th style="width: 80%">Абонент</th>
-//             <th style="width: 20%">Телефон</th>
-//         </tr>';
- //                foreach($beans as $row)
- // {
- //           $output_department .= '
- //        <tr>
- //            <td>'.$row["sub_name"].'</td>
- //            <td>'.$row["vnutr"].'</td>
- //        </tr>';
- //         }
- // $output_department .= '</table></div>';
- // $output.='<h2 style="color: blue">'.$row["department_name"].'</h2>';
- // $output.=$output_department;
- // $output_department='';
 
-// }
-// $section->addText($row['unit_name'], $header);
-// $output_unit.='<a name="'.$row['unit_name'].'"></a><h1 style="text-align: center">'.$row['unit_name'].'</h1><br>';
-// $output_unit.=$output;
-// $alloutput.=$output_unit;
-// $output_unit='';
-// $output='';
+}
 
-// }
-// $date = date('d/m/Y H:i:s', time());
-// $titul='<div><h1 style="text-align: center">Справочник телефонов ОАО Интеграл</h1><div><br>
-// <p>Сформировано по состоянию на '.$date.'</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-// <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
-// $titul.=$zagol;
 
-// $print_out.=$titul;
 
-// $print_out.=$alloutput;
 
-// $myTextElement = $section->addText($print_out);
-// $myTextElement->setFontStyle($fontStyle);
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-$objWriter->save('helloWorld.docx');
+$objWriter->save('download/Catalog.docx');
+echo ("Документ сформирован. Нажмите ");
+echo ('<button type="button" onclick="saveCatalogDoc()"><a href="/download/Catalog.docx" onclick="countDownloads()">Сохранить</a></button><br>');
+echo ($date); 
+echo ('<br>');
 ?>

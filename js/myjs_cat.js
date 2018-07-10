@@ -282,7 +282,7 @@ function topFunction() {
 
   //   success: function(data){
   //     // $("body").append('<span class="badge" id="countmess">'+data+'</span>');
-      window.location = "../catalogPdf.php"
+      // window.location = "../catalogPdf.php"
   //   }
   // });
     $.ajax({
