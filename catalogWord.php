@@ -17,8 +17,9 @@ $fontStyleTit2 = array('color'=>'000000', 'size'=>14, 'bold'=>true);
  $section2->addText('Справочник телефонов', $fontStyleTit, $paragraphStyleTit);
  $section2->addText('ОАО Интеграл', $fontStyleTit, $paragraphStyleTit2);
  $section2->addText('Сформировано по состоянию на '.$date.'', $fontStyleTit2, $paragraphStyleTit2);
+
 $beansunit = R::getAll('SELECT * FROM unit WHERE unit_name IS NOT NULL AND id<>1 ORDER BY unit_name');
-$section = $phpWord->addSection();
+$section3 = $phpWord->addSection();
 ////Стили
 $fancyTableStyleName = 'Fancy Table';
 $fancyTableStyle = array('borderSize' => 6, 'borderColor' => '006699', 'cellMargin' => 80, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER);
@@ -27,24 +28,42 @@ $fancyTableCellStyle = array('valign' => 'center');
 $fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
 $fancyTableFontStyle = array('bold' => true);
 $phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
-$fontStyleUnit = array('color'=>'ff0000', 'size'=>22, 'bold'=>true);
-$fontStyleDepartment = array('color'=>'0000ff', 'size'=>18, 'bold'=>true);
+$fontStyleUnit = array('color'=>'0000ff', 'size'=>22, 'bold'=>true);
+$fontStyleDepartment = array('color'=>'000000', 'size'=>18, 'bold'=>true);
+$fontStyleLink = array('color'=>'0000ff', 'size'=>10, 'bold'=>true);
 ///Стили
 $debug->debug("List управлений Start", null, LOG);
+
+// $textrun = $section->addTextRun('Heading1');
+// $textrun->addText('The ');
+// $textrun->addLink('https://github.com/PHPOffice/PHPWord', 'PHPWord', 'Link');
+// $section->addLink('https://github.com/', 'GitHub', 'Link', 'Heading2');
+
+// $section->addLink('MyBookmark', htmlspecialchars('Take me to the first page', ENT_COMPAT, 'UTF-8'), null, null, true);
+
   foreach($beansunit as $rowunit)
  {
 $debug->debug($rowunit["unit_name"], null, LOG);
-     $section->addListItem($rowunit["unit_name"]);
+     // $section->addLink($rowunit["unit_name"], htmlspecialchars($rowunit["unit_name"], ENT_COMPAT, 'UTF-8'), null, null, true);//addListItem($rowunit["unit_name"]);
+     $textLink=str_replace(' ', '_', $rowunit["unit_name"]);
+// $section3->addLink($textLink, $rowunit["unit_name"], $fontStyleLink);
+$section3->addLink($textLink, htmlspecialchars($rowunit["unit_name"], ENT_COMPAT, 'UTF-8'), null, null, true);
+
+      // adding an internal bookmark
+// $section2->addBookmark('MyBookmark');
      // $dataunit[]=$rowunit['id'];
      $dataunit[] = array('id' =>$rowunit['id'] , 'unit_name' =>$rowunit["unit_name"]);
 
  }
+ $section = $phpWord->addSection();
  $debug->debug("List управлений END", null, LOG);
 // var_dump($dataunit);
 $debug->debug("Перебор управлепний для департаментов", null, LOG);
 foreach ($dataunit as $valueunit) {
     $department_name="";
 $section->addText($valueunit['unit_name'], $fontStyleUnit);
+
+$section->addBookmark($valueunit['unit_name']);
 $debug->debug("Имя управления ".$valueunit["unit_name"], null, LOG);
 $beansdep=R::getAll('SELECT DISTINCT department.id, department.department_name FROM catalog
     INNER JOIN unit ON catalog.unit_id = unit.id
@@ -87,6 +106,9 @@ $table->addCell(2000, $fancyTableCellStyle)->addText($row["vnutr"], $fancyTableF
 
 
 
+
+// adding a link to the internal bookmark
+// $section->addLink('MyBookmark', htmlspecialchars('Take me to the first page', ENT_COMPAT, 'UTF-8'), null, null, true);
 
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 $objWriter->save('download/Catalog.docx');

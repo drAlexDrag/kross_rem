@@ -59,7 +59,7 @@ if(isset($_POST["unit_name"]))
   FROM catalog
   INNER JOIN unit ON catalog.unit_id = unit.id
   INNER JOIN department ON catalog.department_id = department.id
-  WHERE unit.id=? AND department.id<>1', [$unit_id]);
+  WHERE unit.id=? AND department.id<>1 AND visibility NOT IN ("0")', [$unit_id]);
 
  // $output.='<div class="col-sm-6" style="background-color: black;"><ul>';
  if ($beans!=null){
