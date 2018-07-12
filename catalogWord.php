@@ -112,8 +112,40 @@ $table->addCell(2000, $fancyTableCellStyle)->addText($row["vnutr"], $fancyTableF
 
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 $objWriter->save('download/Catalog.docx');
-echo ("Документ сформирован. Нажмите ");
-echo ('<button type="button" onclick="saveCatalogDoc()"><a href="/download/Catalog.docx" onclick="countDownloads()">Сохранить</a></button><br>');
+$output='';
+$output= '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache" />
+  <meta http-equiv="Cache-Control" content="max-age=3600, must-revalidate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Справочник телефонов ОАО "Интеграл"</title>
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
+  <link rel="stylesheet" href="/css/bootstrap.css" />
+  <link rel="stylesheet" href="/css/mystyle.css" />
+  <script src="/js/jquery-3.2.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script>function countDownloads() {
+      $.ajax({
+      url: "/catalog/countdownloads.php",
+      cache: false,
+      dataType:"html",
+      success: function(data){
+      }
+    });
+  }
+  </script>
+</head>
+<body>
+<div class="container-fluid">
+<div class="col-sm-4"></div>
+<div class="col-sm-4" style="margin-top: 10%;"><h2>Документ сформирован</h2><div>Нажмите <button type="button" class="btn"><a href="/download/Catalog.docx" onclick="countDownloads()">Сохранить</a></button></div>
+</div>
+<div class="col-sm-4"></div>
+</div>
+</body></html>';
+
 echo ($date); 
-echo ('<br>');
+echo ($output);
 ?>
