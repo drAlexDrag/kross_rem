@@ -298,10 +298,11 @@ function staExecute() {
     var name=$('#headername').val();
     var idname=$('#idname').val();
     var action="sta_execute";
+    var login = $('#login').text();
     $.ajax({
      url:"staoperation.php",
      method:"POST",
-     data:{action:action, tablename:tablename, columnname:columnname, newvalue:newvalue, name:name, idname:idname},
+     data:{login:login, action:action, tablename:tablename, columnname:columnname, newvalue:newvalue, name:name, idname:idname},
      success:function(data)
      {
 
@@ -332,10 +333,11 @@ function staDelete(){
   var tablename=$("#tablename").val();
   var columnname=$("#columnname").val();
   var action="sta_select";
+  var login = $('#login').text();
   $.ajax({
     url:"staoperation.php",
     method:"POST",
-    data:{action:action, searchString:searchString, tablename:tablename, columnname:columnname},
+    data:{login:login, action:action, searchString:searchString, tablename:tablename, columnname:columnname},
     dataType:"html",
     success:function(data){
       $("#outDelete").html(data);
@@ -349,10 +351,11 @@ function deleteEntry(){
   var tablename=$("#tablename").val();
   var columnname=$("#columnname").val();
   var action="sta_delete";
+  var login = $('#login').text();
   $.ajax({
     url:"staoperation.php",
     method:"POST",
-    data:{action:action, idname:idname, tablename:tablename, columnname:columnname},
+    data:{login:login, action:action, idname:idname, tablename:tablename, columnname:columnname},
     dataType:"html",
     success:function(data){
       $("#idLabelDelete").html(data);

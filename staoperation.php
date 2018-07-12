@@ -88,6 +88,7 @@ $columnname = $_POST["columnname"];
 $newvalue = $_POST["newvalue"];
 $idname = $_POST["idname"];
 $name = $_POST["name"];
+$login=$_POST['login'];
 $modal = '';
 $errors=array();
 $output = '';
@@ -103,8 +104,25 @@ if (R::count($tablename, ''.$columnname.'=?', [$newvalue])>0) {
   }
 if (empty($errors)) {
 $value=R::load($tablename, $idname);
+//log
+$logsta=R::dispense('logsta');
+  $logsta->tab=$tablename;
+  $logsta->idval=$idname;
+  $logsta->val=$value->$columnname;
+  $logsta->user=$login;
+  $logsta->operation="Обновление. Old value";
+  R::store($logsta);//end log
 $value->$columnname=$newvalue;
 R::store($value);
+$value=R::load($tablename, $idname);
+///
+$logsta=R::dispense('logsta');
+  $logsta->tab=$tablename;
+  $logsta->idval=$idname;
+  $logsta->val=$newvalue;
+  $logsta->user=$login;
+  $logsta->operation="Обновление. New value";
+  R::store($logsta);//end log
 $message= '<div class="alert alert-info" role="alert">Обновили. Новое значение: '.$newvalue.'</div>';
 // echo ($message);
 lookoutput($tablename, $columnname, $name, $message);
@@ -129,6 +147,14 @@ if (empty($errors)) {
 $value=R::dispense($tablename);
 $value->$columnname=$newvalue;
 R::store($value);
+///
+$logsta=R::dispense('logsta');
+  $logsta->tab=$tablename;
+  $logsta->idval=$idname;
+  $logsta->val=$newvalue;
+  $logsta->user=$login;
+  $logsta->operation="Новая запись";
+  R::store($logsta);//end log
 $message= '<div class="alert alert-info" role="alert">Добавлено новое значение: '.$newvalue.'</div>';
 // echo ($message);
 lookoutput($tablename, $columnname, $name, $message);
