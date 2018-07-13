@@ -24,14 +24,14 @@ $beansunit = R::getAll('SELECT * FROM unit WHERE unit_name IS NOT NULL AND id<>1
 $section3 = $phpWord->addSection();
 ////Стили
 $fancyTableStyleName = 'Fancy Table';
-$fancyTableStyle = array('borderSize' => 6, 'borderColor' => '006699', 'cellMargin' => 80, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER);
+$fancyTableStyle = array('borderSize' => 1, 'borderColor' => '006699', 'cellMargin' => 80, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER);
 $fancyTableFirstRowStyle = array('borderBottomSize' => 18, 'borderBottomColor' => '0000FF', 'bgColor' => '66BBFF');
 $fancyTableCellStyle = array('valign' => 'center');
 $fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
 $fancyTableFontStyle = array('bold' => true);
 $phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
 $fontStyleUnit = array('color'=>'0000ff', 'size'=>22, 'bold'=>true);
-$fontStyleDepartment = array('color'=>'000000', 'size'=>18, 'bold'=>true);
+$fontStyleDepartment = array('color'=>'000000', 'size'=>16, 'bold'=>true);
 $fontStyleLink = array('color'=>'0000ff', 'size'=>10, 'bold'=>true);
 ///Стили
 $debug->debug("List управлений Start", null, LOG);
@@ -90,8 +90,10 @@ $beans=R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, 
     // $section->addText($row["department_name"]);  
 // $department_name=$row["department_name"];
 // $section->addText($department_name, $fontStyleDepartment);
-    $table = $section->addTable();
-    
+    $table = $section->addTable($fancyTableStyle);
+    $table->addRow();
+    $table->addCell(12000, $fancyTableCellStyle)->addText("Абонент", $fancyTableFontStyle);
+$table->addCell(2000, $fancyTableCellStyle)->addText("Телефон", $fancyTableFontStyle);
                 foreach($beans as $row)
        
  { $table->addRow();
@@ -106,14 +108,9 @@ $table->addCell(2000, $fancyTableCellStyle)->addText($row["vnutr"], $fancyTableF
 
 }
 
-
-
-
-// adding a link to the internal bookmark
-// $section->addLink('MyBookmark', htmlspecialchars('Take me to the first page', ENT_COMPAT, 'UTF-8'), null, null, true);
-
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 $objWriter->save('download/Catalog.docx');
+// $objWriter->save('php://output');
 $output='';
 $output= '<!DOCTYPE html>
 <html lang="en">
