@@ -272,7 +272,12 @@ function topFunction() {
   }
 
 
+
+
+
+
   function countDownloads() {
+myVar = setTimeout(showPage, 10);
 
     $.ajax({
       url: "countdownloads.php",
@@ -285,6 +290,30 @@ function topFunction() {
     });
 
   }
+  function showPage() {
+  document.getElementById("loader").style.display = "block";
+  myVar = setTimeout(showLoader, 10000);
+  alert ("Дождитесь загрузки файла");
+  // document.getElementById("myDiv").style.display = "block";
+}
+function showLoader() {
+  document.getElementById("loader").style.display = "none";
+  // myVar = setTimeout(showLoader, 300);
+  // document.getElementById("myDiv").style.display = "block";
+}
+//     function countDownloads() {
+
+//     $.ajax({
+//       url: "/catalogPdf.php",
+//       cache: false,
+//       dataType:"html",
+//       success: function(data, textStatus, xhr){
+
+// console.log(xhr.status);
+//       }
+//     });
+
+//   }
 
   function myAlert(message){
     $('#myAlertBody').html(message);

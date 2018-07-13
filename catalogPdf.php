@@ -98,7 +98,11 @@ $print_out.=$alloutput;
 $mpdf->SetFooter($date);
 $mpdf->WriteHTML($print_out);
 // Output a PDF file directly to the browser
-$mpdf->Output();//('download/Справочник телефонов.pdf');//$mpdf->Output('catalog.pdf');
+$date = date('d/m/Y');
+ header("Content-Type: application/octet-stream");
+ header('Content-Disposition: attachment; filename=Справочник телефонов за '.$date.'.pdf');
+
+$mpdf->Output('php://output');//('download/Справочник телефонов.pdf');//$mpdf->Output('catalog.pdf');
 // echo  $print_out;
 
 ?>
