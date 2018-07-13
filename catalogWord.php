@@ -17,6 +17,8 @@ $fontStyleTit2 = array('color'=>'000000', 'size'=>14, 'bold'=>true);
  $section2->addText('Справочник телефонов', $fontStyleTit, $paragraphStyleTit);
  $section2->addText('ОАО Интеграл', $fontStyleTit, $paragraphStyleTit2);
  $section2->addText('Сформировано по состоянию на '.$date.'', $fontStyleTit2, $paragraphStyleTit2);
+ // $footer = $section2->addFooter();
+ // $footer->addText("test");
 
 $beansunit = R::getAll('SELECT * FROM unit WHERE unit_name IS NOT NULL AND id<>1 ORDER BY unit_name');
 $section3 = $phpWord->addSection();
