@@ -47,6 +47,16 @@ if($_POST["action"] == "sta_delete") {
 $data=$_POST;
 $tablename = $_POST["tablename"];
 $idname = $_POST["idname"];
+$login = $_POST["login"];
+$columnname=htmlspecialchars($_POST['columnname']);
+$beean=R::load($tablename, $idname);
+$logsta=R::dispense('logsta');
+  $logsta->tab=$tablename;
+  $logsta->idval=$idname;
+  $logsta->val=$beean->$columnname;
+  $logsta->user=$login;
+  $logsta->operation="Удаление";
+  R::store($logsta);//end log
 switch ($tablename) {
 	case 'unit':
 		R::exec("UPDATE catalog SET   catalog.unit_id =1 WHERE catalog.unit_id=$idname");
@@ -75,7 +85,14 @@ switch ($tablename) {
 		# code...
 	break;
 }
-$beean=R::load($tablename, $idname);
+// $beean=R::load($tablename, $idname);
+// $logsta=R::dispense('logsta');
+//   $logsta->tab=$tablename;
+//   $logsta->idval=$idname;
+//   $logsta->val=$beean->$columnname;
+//   $logsta->user=$login;
+//   $logsta->operation="Удаление";
+//   R::store($logsta);//end log
 R::trash($beean);
 echo "Инфомация удалена";
 }

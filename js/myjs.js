@@ -987,6 +987,35 @@ poiskLog='<form class="navbar-form navbar-left">\
 
 }
 
+function readLogSta(page) {
+   $("#container_m").html("");
+  header='Лог Списков';
+
+poiskLog='<form class="navbar-form navbar-left">\
+  <div class="input-group" style="min-width: 50vw">\
+    <input type="text" name="search_logsta" id="search_logsta" placeholder="Поиск по логу сприсков" class="form-control" />\
+    <div class="input-group-btn">\
+      <button class="btn btn-default" type="submit">\
+        <i class="glyphicon glyphicon-search"></i>\
+      </button>\
+    </div>\
+  </div>\
+</form>';
+  $.ajax({
+    url:"logsta.php",
+    method:"POST",
+    data:{page:page},
+    success:function(data){
+      $("#container_k").html("");
+     $('#container_p').html(data);
+     $('#topnav_right').html('');
+     $('#header_area').html(header);
+     $('#poisk').html(poiskLog);
+   }
+ });
+
+}
+
 ////Поиск текста на странице при помощи Jquery
 $(document).on('keyup', '#search_logcatalog', function(){
 
@@ -1019,7 +1048,21 @@ $(document).on('keyup', '#search_logkross', function(){
  });
 
 });
+$(document).on('keyup', '#search_logsta', function(){
 
+  var query = $(this).val();
+  $.ajax({
+    url:"logsta.php",
+    method:"POST",
+    data:{query:query},
+    success:function(data){
+     $('#container_p').html(data);
+     // $('#top_header_left').html(header);
+     // $('#poisk').html(poiskLog);
+   }
+ });
+
+});
 ////Поиск текста на странице при помощи Jquery
 /////////////////////ЧИТАЕМ ЛОГИ END
 
