@@ -81,7 +81,7 @@ foreach ($dataunit as $valueunit) {
       INNER JOIN unit ON catalog.unit_id = unit.id
       INNER JOIN department ON catalog.department_id = department.id
       INNER JOIN filial ON catalog.filial_id = filial.id
-    WHERE unit.id=? AND department.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [$valueunit["id"], $rowdep['id']]);
+      WHERE unit.id=? AND department.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [$valueunit["id"], $rowdep['id']]);
     $table = $sectionOutUnit->addTable($fancyTableStyle);
     $table->addRow();
     $table->addCell(12000, $fancyTableCellStyle)->addText("Абонент", $fancyTableFontStyle);
@@ -97,10 +97,10 @@ foreach ($dataunit as $valueunit) {
 $date = date('d/m/Y');
 header('Set-Cookie:fileDownload=true; path=/catalog');
 header('Content-Disposition: attachment; filename="Справочник телефонов за '.$date.'.docx"');
- header("Content-Type: application/octet-stream");
- 
+header("Content-Type: application/octet-stream");
+
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 // $objWriter->save('download/Catalog.docx');
 $objWriter->save('php://output');
 
-  ?>
+?>
