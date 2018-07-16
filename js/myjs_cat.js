@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  document.cookie = "fileDownload=false";
   var height=$(window).height();
     var width=$(window).width();
     if(width<1200){
@@ -277,47 +278,40 @@ function topFunction() {
 
 
   function countDownloads() {
-myVar = setTimeout(showPage, 10);
-
+myVar = setTimeout(showLoader, 10);
     $.ajax({
       url: "countdownloads.php",
       cache: false,
       dataType:"html",
       success: function(data){
 
-
       }
     });
 
   }
-  function showPage() {
+  function showLoader() {
   document.getElementById("loader").style.display = "block";
-  myVar = setTimeout(showLoader, 10000);
-  alert ("Дождитесь загрузки файла");
-  // document.getElementById("myDiv").style.display = "block";
+  var timerId = setTimeout(function tick() {
+  if (getCookie("fileDownload")!="false"){
+document.getElementById("loader").style.display = "none";
+document.cookie = "fileDownload=false";
+  }
+  else {
+
+  }
+  timerId = setTimeout(tick, 3000);
+}, 3000);
 }
-function showLoader() {
-  document.getElementById("loader").style.display = "none";
-  // myVar = setTimeout(showLoader, 300);
-  // document.getElementById("myDiv").style.display = "block";
-}
-//     function countDownloads() {
-
-//     $.ajax({
-//       url: "/catalogPdf.php",
-//       cache: false,
-//       dataType:"html",
-//       success: function(data, textStatus, xhr){
-
-// console.log(xhr.status);
-//       }
-//     });
-
-//   }
 
   function myAlert(message){
     $('#myAlertBody').html(message);
     $('#myAlert').modal('show');
   }
-
+// возвращает cookie с именем name, если есть, если нет, то undefined
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 

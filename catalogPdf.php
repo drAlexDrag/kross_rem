@@ -99,10 +99,11 @@ $mpdf->SetFooter($date);
 $mpdf->WriteHTML($print_out);
 // Output a PDF file directly to the browser
 $date = date('d/m/Y');
- header("Content-Type: application/octet-stream");
- header('Content-Disposition: attachment; filename=Справочник телефонов за '.$date.'.pdf');
+header('Set-Cookie:fileDownload=true; path=/catalog');
+ header('Content-Disposition: attachment; filename="Справочник телефонов за '.$date.'.pdf"');
+ header("Content-Type: application/document");
 
 $mpdf->Output('php://output');//('download/Справочник телефонов.pdf');//$mpdf->Output('catalog.pdf');
 // echo  $print_out;
-
+// die();
 ?>

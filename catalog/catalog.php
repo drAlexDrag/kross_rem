@@ -87,8 +87,8 @@
               <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <!-- <li><a href="#" onclick="countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> pdf</a></li> -->
-                <li><a href="../catalogPdf.php" onclick="countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> pdf</a></li>
-                <li><a href="../catalogWord.php" onclick="countDownloads()"><img border="0" src="/images/docx.png" alt="W3Schools" width="32" height="32"> docx</a></li>
+                <li><a download href="../catalogPdf.php" onclick="countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> pdf</a></li>
+                <li><a download href="../catalogWord.php" onclick="countDownloads()"><img border="0" src="/images/docx.png" alt="W3Schools" width="32" height="32"> docx</a></li>
               </ul>
             </li>
 
@@ -102,6 +102,7 @@
 $ip=$_SERVER["REMOTE_ADDR"];
 $hostname = gethostbyaddr ($ip);
 ?>
+
 <div class="container-fluid" style="padding-top: 55px">
   <div class="col-md-12">
 <div class="col-md-3 preclass">
