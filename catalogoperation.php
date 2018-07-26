@@ -36,6 +36,7 @@ if (empty($subId)){
   R::store($sub);
   $subId=R::getCol('select id from sub where sub_name=?', [$data["catalogSub"]]);
   $message.= '<br><div class="alert alert-info" role="alert">Имя абонента : '.'<p style="color: red">'.$data["catalogSub"].'</p>'.' Отсутствовало в базе, но было добавлено </div>';
+  // $message.= '<br><div class="alert alert-info" role="alert">Имя абонента : '.'<p style="color: red">'.$data["catalogSub"].'</p>'.' Отсутствует в базе. Добавте в соответствующую базу, через меню БД </div>';
 }
 $unitId=R::getCol('select id from unit where unit_name=?', [$data["catalogUnit"]]);
 if (empty($unitId)){

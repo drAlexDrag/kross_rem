@@ -884,6 +884,9 @@ function catalogCRUD() {
 
   else
   {
+    // if($('#subIdUpdate').val()==""){
+    // alertoverlay("Выберите существующее имя абонента или добавте/обновите через меню БД-->Абоненты");
+  // }
     var action="catalog_update";
     $.ajax({
      url:"catalogoperation.php",
