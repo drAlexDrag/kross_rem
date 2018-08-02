@@ -47,24 +47,26 @@ $beans=R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, 
     WHERE unit.id=? AND department.id=? AND visibility NOT IN ("0") ORDER BY weight DESC', [$valueunit, $rowdep['id']]);
 
 
-$output_department .= '<div style="width: 100%">
-    <table style="width: 100%">';
+// $output_department .= '<div style="width: 100%">
+$output_department .= '
+    <table style="width: 100%; border-collapse: collapse;">';
                 foreach($beans as $row)
  {
            $output_department .= '
         <tr style="width: 100%">';
-            $output_department .= '<td style="width: 80%">'.$row["sub_name"].'</td>';
+            $output_department .= '<td style="width: 80%; border:1px solid black">'.$row["sub_name"].'</td>';
 
-            $output_department .= '<td style="width: 20%">'.$row["vnutr"].'</td>
+            $output_department .= '<td style="width: 20%; border:1px solid black">'.$row["vnutr"].'</td>
         </tr>';
          }
- $output_department .= '</table></div>';
+ // $output_department .= '</table></div>';
+  $output_department .= '</table>';
  $output.='<h2 style="color: black">'.$row["department_name"].'</h2>';
  $output.=$output_department;
  $output_department='';
 
 }
-$output_unit.='<a name="'.$row['unit_name'].'"></a><h1 style="text-align: center; color:blue">'.$row['unit_name'].'</h1><br>';
+$output_unit.='<a name="'.$row['unit_name'].'"></a><h1 style="text-align: center; color:blue">'.$row['unit_name'].'</h1>';
 $output_unit.=$output;
 $alloutput.=$output_unit;
 $output_unit='';
