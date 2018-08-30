@@ -133,7 +133,7 @@ $(document).ready(function(){
    <div class="modal-footer">
     <input type="hidden" name="customer_id" id="customer_id" />
     <!-- <input type="submit" name="action" id="action" class="btn btn-success" /> -->
-    <button type="button" name="action" id="action" class="btn btn-success" data-dismiss="modal" value="">123</button>
+    <button type="button" name="action" id="action" class="btn btn-success" data-dismiss="modal" value=""></button>
     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
    </div>
   </div>
