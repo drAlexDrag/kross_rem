@@ -70,7 +70,7 @@ if(isset($_POST["action"])) //Check value of $_POST["action"] variable value is 
   );
   if(!empty($result))
   {
-   echo 'Data Inserted';
+   echo 'Новый пользователь добавлен';
   }
  }
 
@@ -111,7 +111,7 @@ if(isset($_POST["action"])) //Check value of $_POST["action"] variable value is 
   );
   if(!empty($result))
   {
-   echo 'Data Updated';
+   echo 'Данные пользователя обновлены';
   }
  }
 
@@ -127,7 +127,7 @@ if(isset($_POST["action"])) //Check value of $_POST["action"] variable value is 
   );
   if(!empty($result))
   {
-   echo 'Data Deleted';
+   echo 'Пользователь удален';
   }
  }
 

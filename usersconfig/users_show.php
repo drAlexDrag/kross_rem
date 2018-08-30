@@ -2,7 +2,7 @@
    <h1 align="center">Настройка пользователей</h1>
    <br />
    <div align="right">
-    <button type="button" id="modal_button" class="btn btn-info">Создать пользователя</button>
+    <button type="button" id="modal_button" class="btn btn-info">Добавить пользователя</button>
     <!-- It will show Modal for Create new Records !-->
    </div>
    <br />
@@ -31,8 +31,9 @@ $(document).ready(function(){
   $('#usersModal').modal('show'); //It will load modal on web page
   $('#login').val(''); //This will clear Modal first name textbox
   $('#password').val(''); //This will clear Modal last name textbox
-  $('.modal-title').text("Создать пользователя"); //It will change Modal title to Create new Records
-  $('#action').val('Создать пользователя'); //This will reset Button value ot Create
+  $('.modal-title').text("Добавить пользователя"); //It will change Modal title to Create new Records
+  $('#action').text('Добавить пользователя');//Text button
+  $('#action').val('Create'); //This will reset Button value ot Create
  });
 
  //This JQuery code is for Click on Modal action button for Create new records or Update existing records. This code will use for both Create and Update of data through modal
@@ -64,7 +65,8 @@ $(document).ready(function(){
  //This JQuery code is for Update customer data. If we have click on any customer row update button then this code will execute
  $(document).on('click', '.update', function(){
   var id = $(this).attr("id"); //This code will fetch any customer id from attribute id with help of attr() JQuery method
-  var action = "Select";   //We have define action variable value is equal to select
+  var action = "Select";
+  $('#action').val("Update");   //We have define action variable value is equal to select
   $.ajax({
    url:"/usersconfig/users_config.php",   //Request send to "/usersconfig/users_config.php page"
    method:"POST",    //Using of Post method for send data
@@ -73,7 +75,7 @@ $(document).ready(function(){
    success:function(data){
     $('#usersModal').modal('show');   //It will display modal on webpage
     $('.modal-title').text("Изменить запись"); //This code will change this class text to Update records
-    $('#action').val("Изменить");     //This code will change Button value to Update
+    $('#action').text("Изменить запись");     //Text button
     $('#customer_id').val(id);     //It will define value of id variable to this customer id hidden field
     $('#login').val(data.login);  //It will assign value to modal first name texbox
     $('#password').val(data.password);  //It will assign value of modal last name textbox
@@ -84,7 +86,7 @@ $(document).ready(function(){
  //This JQuery code is for Delete customer data. If we have click on any customer row delete button then this code will execute
  $(document).on('click', '.delete', function(){
   var id = $(this).attr("id"); //This code will fetch any customer id from attribute id with help of attr() JQuery method
-  if(confirm("Are you sure you want to remove this data?")) //Confim Box if OK then
+  if(confirm("Вы точно хотите удалить этого пользователя?")) //Confim Box if OK then
   {
    var action = "Delete"; //Define action variable value Delete
    $.ajax({
@@ -119,6 +121,7 @@ $(document).ready(function(){
     <input type="text" name="password" id="password" class="form-control" />
     <br />
     <div>
+      <label>Права доступа</label><br />
   <select name="useradmin">
   <option value="0">Пользователь</option>
   <option value="1">Администратор</option>
@@ -129,7 +132,8 @@ $(document).ready(function(){
    </div>
    <div class="modal-footer">
     <input type="hidden" name="customer_id" id="customer_id" />
-    <input type="submit" name="action" id="action" class="btn btn-success" />
+    <!-- <input type="submit" name="action" id="action" class="btn btn-success" /> -->
+    <button type="button" name="action" id="action" class="btn btn-success" data-dismiss="modal" value="">123</button>
     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
    </div>
   </div>
