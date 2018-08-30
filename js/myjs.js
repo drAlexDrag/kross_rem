@@ -150,6 +150,7 @@ function count() {
 //Вывод на печать
 $(document).on('click', '#printt', function(){
  Popup($('.table-responsive').html());
+ // Popup($('#container_p').html());
 
 });
 //Вывод на печать
@@ -219,6 +220,7 @@ function fetchData(page)//Загрузка начальной страницы
       $('#container_p').html(data);
       $("#container_k").html("");
       $('#topnav_right').html(topnav);
+      $('#top_header_left').show();
       $('#header_area').html(area);
     },
     error:function(data)
@@ -769,6 +771,7 @@ function catalogEdit(page)
      $('#container_p').html(data);
      $("#container_k").html("");
      $('#topnav_right').html(topnav);
+     $('#top_header_left').show();
      $('#header_area').html(header);
 
    }
@@ -941,6 +944,8 @@ poiskLog='<form class="navbar-form navbar-left">\
       $("#container_k").html("");
      $('#container_p').html(data);
      $('#topnav_right').html('');
+     $('#top_header_left').show();
+     // document.getElementById("top_header_left").style.display = "block";
      $('#header_area').html(header);
      $('#poisk').html(poiskLog);
    }
@@ -982,6 +987,7 @@ poiskLog='<form class="navbar-form navbar-left">\
      $('#container_p').html(data);
      $('#topnav_right').html('');
      $('#header_area').html(header);
+     $('#top_header_left').show();
      $('#poisk').html(poiskLog);
    }
  });
@@ -1013,6 +1019,7 @@ poiskLog='<form class="navbar-form navbar-left">\
      $('#container_p').html(data);
      $('#topnav_right').html('');
      $('#header_area').html(header);
+     $('#top_header_left').show();
      $('#poisk').html(poiskLog);
    }
  });
@@ -1029,6 +1036,7 @@ $(document).on('keyup', '#search_logcatalog', function(){
     data:{query:query},
     success:function(data){
      $('#container_p').html(data);
+
      // $('#top_header_left').html(header);
      // $('#poisk').html(poiskLog);
    }
@@ -1045,6 +1053,7 @@ $(document).on('keyup', '#search_logkross', function(){
     data:{query:query},
     success:function(data){
      $('#container_p').html(data);
+     // $('#top_header_left').show();
      // $('#top_header_left').html(header);
      // $('#poisk').html(poiskLog);
    }
@@ -1287,7 +1296,7 @@ function usersConfig() {
     url:"/usersconfig/users_show.php",
     success:function(data){
      $('#container_p').html(data);
-     $('#top_header_left').html('');
+     $('#top_header_left').hide();
    }
  });
 }
@@ -1338,6 +1347,7 @@ function numberlive() {
     dataType:"html",
     success:function(data){
      $('#container_k').html(data);
+     $('#top_header_left').show();
    }
  });
 }

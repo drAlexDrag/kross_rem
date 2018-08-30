@@ -121,7 +121,7 @@ $("#asd a")
                   <!-- <li><a href="#" id="con"><span>Консоль</span></a></li> -->
                   <!-- <li><a href="#" id="napolnenie"><span>Наполнение справочника</span></a></li> -->
                   <!-- <li><a href="#" onclick="catalogEditTree()"><span>Порядок отображения абонентов</span></a></li> -->
-                  <li><a href="signup.php" id="registration"><span>Зарегистрировать пользователя</span></a></li>
+                  <!-- <li><a href="signup.php" id="registration"><span>Зарегистрировать пользователя</span></a></li> -->
 
                 </ul>
               </li>

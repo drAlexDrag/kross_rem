@@ -59,7 +59,8 @@ if($logkross!=null){
 }
 else
 {
- echo 'Data Not Found';
+  $output='Data Not Found';
+ echo $output;
 }
 
 ?>
