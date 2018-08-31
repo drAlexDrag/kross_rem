@@ -74,7 +74,7 @@ LIKE \"%".$log_n_tel."%\" OR catalog.vnutr LIKE \"%".$log_n_tel."%\" AND visibil
                 </tr>';
                  $output .= '<tr>
                           <td colspan="7"><div style="border: 3px solid red; width: auto; height: auto; padding: 10px;" id="result_div_id">
-            <em>По запросу <strong>'.$log_n_tel.'</strong> ничего не найдено!</em>
+            <em>По запросу <strong>'.$log_n_tel.'</strong> нет данных!</em>
         </div></td>
                      </tr>';
  }

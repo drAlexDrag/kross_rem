@@ -315,3 +315,21 @@ function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+//life search
+$(document).on('keyup', '#log_n_tel', function(){
+
+  var log_n_tel = $(this).val();
+  $.ajax({
+    url:"/catalog/catalog_select.php",
+    method:"POST",
+    data:{log_n_tel:log_n_tel},
+    dataType:"text",
+    success:function(data){
+     $('#container_p').html(data);
+     // $('#top_header_left').show();
+     // $('#top_header_left').html(header);
+     // $('#poisk').html(poiskLog);
+   }
+ });
+
+});
