@@ -107,7 +107,7 @@ $("#asd a")
                 <li class="dropdown-header">Лог работы</li>
                 <li><a href="#"  onclick="readLogData(1)"><span>Лог Данных</span></a></li>
                 <li><a href="#"  onclick="readLogCatalog()"><span>Лог Справочника</span></a></li>
-                <li><a href="#"  onclick="readLogSta()"><span>Лог Списков</span></a></li>
+                <li><a href="#"  onclick="readLogSta()"><span>Лог Таблиц</span></a></li>
               </ul>
 
             </li>
