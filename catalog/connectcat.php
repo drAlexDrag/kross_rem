@@ -1,4 +1,5 @@
 <?php
+require_once "../PHPDebug/PHPDebug.php";
 $host = 'localhost';				// Сервер
   	$user = 'dron';			// Имя пользователя
 	$password = 'port2100';	// Пароль пользователя

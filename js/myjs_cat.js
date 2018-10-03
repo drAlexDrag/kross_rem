@@ -109,7 +109,7 @@ function poisk_spr(){
   }});
 }
 
-$("form_poisk").on("submit", function(){
+$("form_poisk").on('change', '#log_n_tel', function(){
   poisk_spr();
   return false;
 });

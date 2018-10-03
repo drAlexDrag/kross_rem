@@ -71,7 +71,7 @@ switch ($tablename) {
 		R::exec("UPDATE krossdata SET   krossdata.rasperd_id =1 WHERE krossdata.rasperd_id=$idname");
 	break;
 	case 'sub':
-		R::exec("UPDATE catalog SET   catalog.sub_id =1 WHERE catalog.sub_id=$idname");
+		R::exec("UPDATE catalog SET catalog.sub_id =1, catalog.visibility =0 WHERE catalog.sub_id=$idname");
 		R::exec("UPDATE krossdata SET   krossdata.sub_id =1 WHERE krossdata.sub_id=$idname");
 	break;
 	case 'type':
