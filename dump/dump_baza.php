@@ -37,7 +37,7 @@
   // $dump_dir = "//dron/dump"; // Директория, куда будут помещаться архивы
   // $dump_dir_baza = "/openserver/domains/bolvanka/dump/baza"; // Директория, куда будут помещаться архивы sql
   $delay_delete = 35 * 24 * 3600; // Время в секундах, через которое архивы будут удаляться
-  $filezip = "backup_".date("Y-m-d").".zip"; // Имя архива
+  $filezip = "backup_".date("Y-m-d H-i-s").".zip"; // Имя архива
   
   deleteOldArchive(); // Удаляем все старые архивы
   
