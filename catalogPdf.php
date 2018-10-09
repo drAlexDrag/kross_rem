@@ -1,6 +1,6 @@
 <?php
 // Require composer autoload
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '../vendor/autoload.php';
 require 'connect.php';
 // require_once "phpdebug/phpdebug.php";//вывод в консоль
 // Create an instance of the class:

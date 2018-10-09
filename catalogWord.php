@@ -1,7 +1,7 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '../vendor/autoload.php';
 require 'connect.php';
-require_once "phpdebug/phpdebug.php";//вывод в консоль
+// require_once "phpdebug/phpdebug.php";//вывод в консоль
 // $debug = new PHPDebug();//вывод в консоль
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 $sectionIntro = $phpWord->addSection();
