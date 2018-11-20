@@ -2,8 +2,8 @@
 //catalog_select.php
 require_once 'connectcat.php';
 require_once 'connect.php';
-require_once "../PHPDebug/PHPDebug.php";
-$debug = new PHPDebug();
+// require_once "../PHPDebug/PHPDebug.php";
+// $debug = new PHPDebug();
  if (isset($_POST)) {
 
   $log_n_tel= $_POST["log_n_tel"];
@@ -19,7 +19,7 @@ INNER JOIN filial ON catalog.filial_id = filial.id
 WHERE sub.sub_name
 LIKE \"%".$log_n_tel."%\" OR catalog.vnutr LIKE \"%".$log_n_tel."%\" AND visibility NOT IN ('0')");
   // var_dump($strSQL);
-$debug->debug($log_n_tel, null, LOG);
+// $debug->debug($log_n_tel, null, LOG);
    // $result = mysqli_query($connect, $strSQL);// Выполнить запрос (набор данных $result содержит результат)
  $output .= '
 <div class="alert alert-info">Ищем  
