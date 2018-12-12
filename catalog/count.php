@@ -1,4 +1,4 @@
-<?require_once 'connect.php'; // подключаем скрипт
+<?require_once '../connect.php'; // подключаем скрипт
 // Получаем IP-адрес посетителя и сохраняем текущую дату
 $visitor_ip = $_SERVER['REMOTE_ADDR'];
 // print_r($visitor_ip);

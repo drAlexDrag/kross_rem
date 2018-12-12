@@ -1,5 +1,5 @@
 <?php
-require 'tconnect.php'; // подключаем скрипт
+require '../connect.php'; // подключаем скрипт
 $dataPost=$_POST;
 if($dataPost["action"] == "upTree"){
 	$catalog=R::load( 'catalog', $dataPost["id"] );

@@ -1,4 +1,4 @@
-<?require_once 'connect.php'; // подключаем скрипт
+<?require_once '../connect.php'; // подключаем скрипт
 
 // Указываем кодировку, в которой будет получена информация из базы
 // @mysqli_query ($db, 'set character_set_results = "utf8"');

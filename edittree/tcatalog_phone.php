@@ -1,6 +1,6 @@
 <?php
  //Выводим список площадок
- require_once 'tconnect.php';
+ require_once '../connect.php';
  $output = '';
  $beans = R::getAll('SELECT * FROM unit WHERE unit_name IS NOT NULL AND id<>1 ORDER BY unit_name');
  $output.='<ul>';

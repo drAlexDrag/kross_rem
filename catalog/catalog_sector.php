@@ -1,5 +1,5 @@
 <?php
-require_once 'connect.php';
+require_once '../connect.php';
 if(isset($_POST["sector_id"]))
  {
  	$department_id=$_POST["department_id"];

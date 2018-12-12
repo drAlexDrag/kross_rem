@@ -1,5 +1,5 @@
 <?php
-require_once 'connect.php';
+require_once '../connect.php';
 if(isset($_POST["unit_name"]))
 {
   $unit_name=$_POST["unit_name"];

@@ -1,5 +1,5 @@
 <?php
-require_once 'tconnect.php';
+require_once '../connect.php';
 if(isset($_POST["sector_id"]))
 {
   

@@ -96,7 +96,7 @@ $("#asd a")
                 <li><a href="#" onclick=" staCRUD('unit', 'Управления')"><span>Управления</span></a></li>
                 <li><a href="#" onclick=" staCRUD('department', 'Отделы/Бюро')"><span>Отделы/Бюро</span></a></li>
                 <li><a href="#" onclick=" staCRUD('filial', 'Филиалы')"><span>Филиалы</span></a></li>
-                <li><a href="#" onclick=" staCRUD('area', 'Площадки')"><span>Площадки</span></a></li>
+                <li><a href="#" onclick=" staCRUD('area', 'Площадки')"><span>Кроссовые журналы</span></a></li>
                 <li><a href="#" onclick=" staCRUD('type', 'Типы')"><span>Типы</span></a></li>
                 <li><a href="#" onclick=" staCRUD('raspred', 'Распределение')"><span>Распределение</span></a></li>
                 <!-- <li><a href="#" onclick=" staCRUD('number', 'Номера')"><span>Номера (тест)</span></a></li> -->

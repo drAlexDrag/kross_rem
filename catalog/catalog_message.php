@@ -1,6 +1,6 @@
 <?php
 //catalog_message.php
-require_once 'connect.php';
+require_once '../connect.php';
 if(!empty($_POST))
 {
       $output = '';
