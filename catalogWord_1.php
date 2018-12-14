@@ -5,8 +5,6 @@ require 'connect.php';
 // $debug = new PHPDebug();//вывод в консоль
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 $sectionIntro = $phpWord->addSection();
-// $footer = $sectionIntro->addFooter();
-// $footer->addPreserveText('Страница {PAGE} из {NUMPAGES}.');
 $output = '';
 $output_department = '';
 $titul = '';
@@ -27,7 +25,7 @@ $fontStyleTit2 = array('color'=>'000000', 'size'=>14, 'bold'=>true);
 $fancyTableStyleName = 'Fancy Table';
 $fancyTableStyle = array('borderSize' => 1, 'borderColor' => '006699', 'cellMargin' => 10, 'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER); //cellMargin
 $fancyTableFirstRowStyle = array('borderBottomSize' => 18, 'borderBottomColor' => '0000FF', 'bgColor' => '66BBFF');
-$fancyTableCellStyle = array('valign' => 'center', 'bgColor'=> 'FFFFFF');//!!!!!!vggv
+$fancyTableCellStyle = array('valign' => 'center', 'bgColor'=> '66BBFF');//!!!!!!vggv
 $fancyTableCellBtlrStyle = array('valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR);
 $fancyTableFontStyle = array('bold' => true);
 $phpWord->addTableStyle($fancyTableStyleName, $fancyTableStyle, $fancyTableFirstRowStyle);
@@ -92,12 +90,9 @@ foreach ($dataunit as $valueunit) {
      { $table->addRow();
       $table->addCell(12000, $fancyTableCellStyle)->addText($row["sub_name"], $fancyTableFontStyle);
       $table->addCell(2000, $fancyTableCellStyle)->addText($row["vnutr"], $fancyTableFontStyle);
-    }
+    }$sectionOutUnit->addText("EndTable", $fancyTableStyle);
   }
-  // $sectionOutUnit->addText("EndTableUnit", $fancyTableStyle);
-  $sectionOutUnit->addPageBreak();//Каждое управление с новой страницы
 }
-// $sectionOutUnit->addText("End", $fancyTableStyle);
 
 $date = date('d/m/Y');
 header('Set-Cookie:fileDownload=true; path=/catalog');
