@@ -28,7 +28,8 @@ if(isset($_SESSION['loginUser'])):?>
             <span class="dot-red"></span>
             <span class="dot-yellow"></span>
             <span class="dot-green"></span>
-          Кроссовый Журнал</a> <!-- <audio id="myaudio" preload="auto">
+            КРОСС</a>
+             <!-- <audio id="myaudio" preload="auto">
            <source src="/1.ogg">
          Ваш браузер не поддерживает аудио при помощи html5.
          </audio><script>var myaudio = $("#myaudio")[0];
@@ -99,6 +100,7 @@ $("#asd a")
                 <li><a href="#" onclick=" staCRUD('area', 'Площадки')"><span>Кроссовые журналы</span></a></li>
                 <li><a href="#" onclick=" staCRUD('type', 'Типы')"><span>Типы</span></a></li>
                 <li><a href="#" onclick=" staCRUD('raspred', 'Распределение')"><span>Распределение</span></a></li>
+                <li><a href="#" onclick=" staCRUD('sector', 'ТЕСТ Сектор')"><span>ТЕСТ Сектор</span></a></li>
                 <!-- <li><a href="#" onclick=" staCRUD('number', 'Номера')"><span>Номера (тест)</span></a></li> -->
                 <li class="divider"></li>
                 <li class="dropdown-header">Резервное копирование БД</li>
