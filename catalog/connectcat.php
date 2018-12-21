@@ -1,6 +1,7 @@
 <?php
 require_once "../PHPDebug/PHPDebug.php";
-$host = 'localhost';				// Сервер
+// $host = 'localhost';				// Сервер
+$host = '192.168.50.37';				// Сервер
   	$user = 'dron';			// Имя пользователя
 	$password = 'port2100';	// Пароль пользователя
 	$database = 'kross';				// Имя базы данных
