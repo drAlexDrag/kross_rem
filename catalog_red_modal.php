@@ -62,6 +62,13 @@
 </div>
 
 <div class='form-group'>
+  <label class="control-label col-sm-2">Тест сектор:</label>
+  <div class="col-sm-10">
+    <input type="text" name="catalogSector" id="catalogSector" class="form-control autoListData" data-table="sector" data-sql="sector_name" data-id="#catalogSector" data-nameid='sector_id' data-idname=""/>
+  </div>
+</div>
+
+<div class='form-group'>
   <label class="control-label col-sm-2">Кабинет:</label>
   <div class="col-sm-10">
     <input type="text" name="catalogCabinet" id="catalogCabinet" class="form-control" />

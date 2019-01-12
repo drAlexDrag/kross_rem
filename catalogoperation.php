@@ -3,11 +3,12 @@ require 'connect.php'; // подключаем скрипт
 if($_POST["action"] == "catalog_fetch_red") {
  if(isset($_POST["data_id"]))
  {
- $catalogBeans=R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility
+ $catalogBeans=R::getAll('SELECT catalog.id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, sector.sector_name, catalog.cabinet, filial.filial_name, catalog.visibility
 FROM catalog
 INNER JOIN sub ON catalog.sub_id = sub.id
 INNER JOIN unit ON catalog.unit_id = unit.id
 INNER JOIN department ON catalog.department_id = department.id
+INNER JOIN sector ON catalog.sector_id = sector.id
 INNER JOIN filial ON catalog.filial_id = filial.id
 WHERE catalog.id = ?', [$_POST["data_id"]]);
 foreach($catalogBeans as $row){
@@ -54,6 +55,14 @@ if (empty($departmentId)){
   $departmentId=R::getCol('select id from department where department_name=?', [$data["catalogDepartment"]]);
   $message.= '<br><div class="alert alert-info" role="alert">Имя отдела/бюро : '.'<p style="color: red">'.$data["catalogDepartment"].'</p>'.' Отсутствовало в базе, но было добавлено </div>';
 }
+$sectorId=R::getCol('select id from sector where sector_name=?', [$data["catalogSector"]]);
+if (empty($departmentId)){
+  $sector=R::dispense('sector');
+  $sector->sector_name=$data["catalogSector"];
+  R::store($sector);
+  $sectorId=R::getCol('select id from sector where sector_name=?', [$data["catalogSector"]]);
+  $message.= '<br><div class="alert alert-info" role="alert">Тест Сектор : '.'<p style="color: red">'.$data["catalogSector"].'</p>'.' Отсутствовало в базе, но было добавлено </div>';
+}
 $filialId=R::getCol('select id from filial where filial_name=?', [$data["catalogFilial"]]);
 if (empty($filialId)){
   $filial=R::dispense('filial');
@@ -79,6 +88,7 @@ if (empty($data["catalogId"])){
   $catalog->sub=R::load('sub', $subId[0]);
   $catalog->unit=R::load('unit', $unitId[0]);
   $catalog->department=R::load('department', $departmentId[0]);
+  $catalog->sector=R::load('sector', $sectorId[0]);
   $catalog->filial=R::load('filial', $filialId[0]);
   R::store($catalog);
   $getinsertID=R::getinsertID();
@@ -91,6 +101,7 @@ if (empty($data["catalogId"])){
   // $logcatalog->city=$catalogselect->city;
   $logcatalog->unit=$data["catalogUnit"];;
   $logcatalog->department=$data["catalogDepartment"];
+  $logcatalog->sector=$data["catalogSector"];
   $logcatalog->cabinet=$data["catalogCabinet"];
   $logcatalog->filial=$data["catalogFilial"];
   $logcatalog->visibility=$data["catalogVisibility"];
@@ -111,6 +122,7 @@ elseif(!empty($data["catalogId"])) {
   $logcatalog->city=$catalogselect->city;
   $logcatalog->unit=$catalogselect->unit['unit_name'];
   $logcatalog->department=$catalogselect->department['department_name'];
+  $logcatalog->sector=$catalogselect->sector['sector_name'];
   $logcatalog->cabinet=$catalogselect->cabinet;
   $logcatalog->filial=$catalogselect->filial['filial_name'];
   $logcatalog->visibility=$catalogselect->visibility;
@@ -125,6 +137,7 @@ elseif(!empty($data["catalogId"])) {
   $catalogselect->sub=R::load('sub', $subId[0]);
   $catalogselect->unit=R::load('unit', $unitId[0]);
   $catalogselect->department=R::load('department', $departmentId[0]);
+  $catalogselect->sector=R::load('sector', $sectorId[0]);
   $catalogselect->filial=R::load('filial', $filialId[0]);
   R::store($catalogselect);
   $catalogselect=R::load('catalog', $data["catalogId"]);
@@ -135,6 +148,7 @@ elseif(!empty($data["catalogId"])) {
   $logcatalog->city=$catalogselect->city;
   $logcatalog->unit=$catalogselect->unit['unit_name'];
   $logcatalog->department=$catalogselect->department['department_name'];
+  $logcatalog->sector=$catalogselect->sector['sector_name'];
   $logcatalog->cabinet=$catalogselect->cabinet;
   $logcatalog->filial=$catalogselect->filial['filial_name'];
   $logcatalog->visibility=$catalogselect->visibility;
@@ -152,11 +166,12 @@ elseif(!empty($data["catalogId"])) {
           $output .= '<div class="table-responsive table-bordered" id="catalog_table">';
            $output .= OutputTheadCatalog();
 
-$catalog = R::getAll('SELECT catalog.id, catalog.sub_id, catalog.unit_id, catalog.department_id, catalog.filial_id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, catalog.cabinet, filial.filial_name, catalog.visibility
+$catalog = R::getAll('SELECT catalog.id, catalog.sub_id, catalog.unit_id, catalog.department_id, catalog.filial_id, sub.sub_name, catalog.vnutr, catalog.city, unit.unit_name, department.department_name, sector.sector_name, catalog.cabinet, filial.filial_name, catalog.visibility
 FROM catalog
 INNER JOIN sub ON catalog.sub_id = sub.id
 INNER JOIN unit ON catalog.unit_id = unit.id
 INNER JOIN department ON catalog.department_id = department.id
+INNER JOIN sector ON catalog.sector_id = sector.id
 INNER JOIN filial ON catalog.filial_id = filial.id
 WHERE catalog.id=?', [ $catalogId]);
           foreach($catalog as $row)

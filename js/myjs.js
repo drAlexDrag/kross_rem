@@ -612,7 +612,11 @@ $(document).on('click', '.autoListData', function(){
   var columnname=tablename+"_name";
   idinput='#'+idinput;
   $('#result').remove();
-  autoListData(tablename, idinput, query, columnname);
+    if((query.length)==0){
+    console.log("Пустой запрос click");
+
+  } else {
+  autoListData(tablename, idinput, query, columnname);}
 });
 
 
@@ -843,6 +847,7 @@ $(document).on('click', '.red_modal', function(){
      $('#catalogCity').val(data.city);
      $('#catalogUnit').val(data.unit_name);
      $('#catalogDepartment').val(data.department_name);
+     $('#catalogSector').val(data.sector_name);
      $('#catalogCabinet').val(data.cabinet);
      $('#catalogFilial').val(data.filial_name);
      $('#catalogVisibility').val(data.visibility);
