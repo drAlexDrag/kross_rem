@@ -1,6 +1,6 @@
 <?php
 //catalog_select.php
-require_once 'connectcat.php';
+// require_once 'connectcat.php';
 require_once '../connect.php';
 // require_once "../PHPDebug/PHPDebug.php";
 // $debug = new PHPDebug();
