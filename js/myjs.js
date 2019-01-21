@@ -612,11 +612,12 @@ $(document).on('click', '.autoListData', function(){
   var columnname=tablename+"_name";
   idinput='#'+idinput;
   $('#result').remove();
-    if((query.length)==0){
-    console.log("Пустой запрос click");
+  autoListData(tablename, idinput, query, columnname);
+  //   if((query.length)==0){
+  //   console.log("Пустой запрос click");
 
-  } else {
-  autoListData(tablename, idinput, query, columnname);}
+  // } else {
+  // autoListData(tablename, idinput, query, columnname);}
 });
 
 
@@ -872,7 +873,7 @@ function catalogAdd() {
   document.getElementById('modal_title_catalog').innerHTML="Добавить абонента";
   $('#catalog_red_Modal').modal('show');
 }
-
+// добавить номер в каталог
 $(document).on('click', '.catalogNumberAdd', function(){
   $('#catalog_red_form')[0].reset();
   $('#result').remove();
