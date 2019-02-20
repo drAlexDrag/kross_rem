@@ -463,11 +463,16 @@ function dataCRUD() {
 }
 
 function dataViewTable(name_div, tablename, columnname, name) {
+  console.log("Начальная загрузка таблицы: START?????");
+  idinput='#staAutoList';
   name_div='#'+name_div;
+  if(!$("div").is("#result")){
+    $("<div id='result' style='height:300px;overflow-y:scroll;'></div>").insertAfter(idinput);
+  }
   $.ajax({
    url:"loadfetch.php",
    method:"POST",
-   data:{tablename:tablename, columnname:columnname, name:name},
+   data:{idinput:idinput, query:"start", tablename:tablename, columnname:columnname, name:name},
    success:function(data)
    {
     $('#result').html(data);
@@ -608,6 +613,7 @@ $(document).on('click', '.autoClear', function(){
 $(document).on('click', '.autoListData', function(){
   var idinput=event.target.id;
   var tablename = event.target.dataset.table;
+  console.log("Проверяем автоЛистДата-имя таблицы---", tablename);
   var query = $(this).val();
   var columnname=tablename+"_name";
   idinput='#'+idinput;
@@ -641,8 +647,9 @@ function autoListData(tablename, idinput, query, columnname) {
   }
   if((query.length)==0){
     console.log("Пустой запрос");
-
+$('#result').html("Пустой запрос");
   }
+  else(
   $.ajax({
    url:"loadfetch.php",
    method:"POST",
@@ -661,7 +668,8 @@ function autoListData(tablename, idinput, query, columnname) {
       $(idvariabl).val('');
     }
   }
-});
+// });
+}) )
 }
 
 $(document).on('click', '.tablecolumn', function(){

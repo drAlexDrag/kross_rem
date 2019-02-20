@@ -6,6 +6,10 @@ $idinput=$_POST["idinput"];
 $query=$_POST["query"];
 $tablename=$_POST["tablename"];
 $tablename2=$tablename.'_id';
+
+// if(($_POST["idinput"])==!null)
+// {$result=R::getAll( 'SELECT * FROM '.$tablename.' ORDER BY id');}
+// else {}
 // if ($tablename=="number") {
 //   # code...
 // }
@@ -15,7 +19,7 @@ $output = '';
 // $debug = new PHPDebug();
 // $debug->debug("Очень простое сообщение на консоль", null, LOG);
 // $debug->debug("Очень простое сообщение на консоль2", null, LOG);
-if(($_POST["query"])==!null)
+if(($_POST["query"])!=="start")
 {
 if (is_numeric($query)) {
   $result = R::getAll( 'SELECT * FROM '.$tablename.' WHERE id="'.$query.'"' );
@@ -27,7 +31,8 @@ if (is_numeric($query)) {
 else
 {
 
-  $result=R::getAll( 'SELECT * FROM '.$tablename.' ORDER BY id');
+  $result=R::getAll( 'SELECT * FROM '.$tablename.' ORDER BY id LIMIT 100');
+  $count=R::count($tablename);
 }
 
  $output .= '
@@ -84,7 +89,7 @@ if ($result==null){$output=''; $output="<br><div class='alert alert-danger' id='
     # code...
     $output2='<div id="resultreturt" hidden>Точного совпадения нет</div>';
   }
-  
+  $output.=$count;
   echo $output;
   echo $output2;
   $output2="";

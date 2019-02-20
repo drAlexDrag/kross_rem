@@ -58,6 +58,7 @@ if (isset($data['doLogin'])) {
 			<label class="control-label col-sm-2" for="password" placeholder="Ваш пароль:">Ваш пароль:</label>
 			<div class="col-sm-3">
 			<input type="password" class="form-control" name="password" id="password" placeholder="Пароль пользователя"/>
+			<!-- <input type="text" class="form-control admin"  placeholder="База"/> -->
 		</div></div>
 		<div class="form-group">
       <div class="col-sm-offset-2 col-sm-6">
