@@ -23,10 +23,12 @@ if(($_POST["query"])!=="start")
 {
 if (is_numeric($query)) {
   $result = R::getAll( 'SELECT * FROM '.$tablename.' WHERE id="'.$query.'"' );
-  $resultreturt = R::getAll( 'SELECT * FROM '.$tablename.' WHERE id="'.$query.'
-   " ' ); } else{
+  // $resultreturt = R::getAll( 'SELECT * FROM '.$tablename.' WHERE id="'.$query.'" ' ); 
+} 
+  else{
   $result = R::getAll( 'SELECT * FROM '.$tablename.' WHERE '.$columnname.' LIKE \'%'.$query.'%\' ' );
-  $resultreturt = R::getAll( 'SELECT '.$columnname.' FROM '.$tablename.' WHERE '.$columnname.'="'.$query.'" ' );}
+  // $resultreturt = R::getAll( 'SELECT '.$columnname.' FROM '.$tablename.' WHERE '.$columnname.'="'.$query.'" ' );
+}
 }
 else
 {
@@ -85,13 +87,14 @@ if ($result==null){$output=''; $output="<br><div class='alert alert-danger' id='
   <strong>Alert!</strong> Совпадений не найдено. Добавте новое значение через меню БД</div>";
   echo $output;
 } else {
-  if ($resultreturt==null) {
-    # code...
-    $output2='<div id="resultreturt" hidden>Точного совпадения нет</div>';
-  }
+  // if ($resultreturt==null) {
+  //   # code...
+  //   $output2='<div id="resultreturt" hidden>Точного совпадения нет</div>';
+  // }
+  // $count.="-all";
   $output.=$count;
   echo $output;
-  echo $output2;
-  $output2="";
+  // echo $output2;
+  // $output2="";
 }
 ?>

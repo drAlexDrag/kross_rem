@@ -645,11 +645,11 @@ function autoListData(tablename, idinput, query, columnname) {
   if(!$("div").is("#result")){
     $("<div id='result' style='height:300px;overflow-y:scroll;'></div>").insertAfter(idinput);
   }
-  if((query.length)==0){
-    console.log("Пустой запрос");
-$('#result').html("Пустой запрос");
-  }
-  else(
+//   if((query.length)==0){
+//     console.log("Пустой запрос");
+// $('#result').html("Пустой запрос");
+//   }
+  // else(
   $.ajax({
    url:"loadfetch.php",
    method:"POST",
@@ -668,8 +668,8 @@ $('#result').html("Пустой запрос");
       $(idvariabl).val('');
     }
   }
-// });
-}) )
+});
+// }) )
 }
 
 $(document).on('click', '.tablecolumn', function(){
