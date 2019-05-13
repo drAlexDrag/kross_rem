@@ -6,7 +6,7 @@
  $output.='<ul>';
   foreach($beans as $row)
  {
- 	 $output .='<li><a class="unitcatalog" style="color:blue; cursor: pointer;" data-id="'.$row["id"].'" data-name="'.$row["unit_name"].'">'.$row["unit_name"].'</li></a>';
+ 	 $output .='<li><a class="unitcatalog" style="color:'.$row["color"].'; cursor: pointer;" data-id="'.$row["id"].'" data-name="'.$row["unit_name"].'">'.$row["unit_name"].'</li></a>';
  	}
  $output.='</ul>';
  echo $output;
