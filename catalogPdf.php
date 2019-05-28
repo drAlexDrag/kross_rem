@@ -54,14 +54,15 @@ $output_department .= '
  {
            $output_department .= '
         <tr style="width: 100%">';
-            $output_department .= '<td style="width: 80%; border:1px solid black">'.$row["sub_name"].'</td>';
+            $output_department .= '<td style="width: 70%; border:1px solid black">'.$row["sub_name"].'</td>';
 
-            $output_department .= '<td style="width: 20%; border:1px solid black">'.$row["vnutr"].'</td>
+            $output_department .= '<td style="width: 10%; border:1px solid black">'.$row["vnutr"].'</td>';
+            $output_department .= '<td style="width: 20%; border:1px solid black">'.$row["cabinet"].'</td>
         </tr>';
          }
  // $output_department .= '</table></div>';
   $output_department .= '</table>';
- $output.='<h2 style="color: black">'.$row["department_name"].'</h2>';
+ $output.='<h3 style="color: black">'.$row["department_name"].'</h3>';
  $output.=$output_department;
  $output_department='';
 

@@ -88,10 +88,12 @@ foreach ($dataunit as $valueunit) {
     $table->addRow();
     $table->addCell(12000, $fancyTableCellStyle)->addText("Абонент", $fancyTableFontStyle);
     $table->addCell(2000, $fancyTableCellStyle)->addText("Телефон", $fancyTableFontStyle);
+    $table->addCell(2000, $fancyTableCellStyle)->addText("Кабинет", $fancyTableFontStyle);
     foreach($beans as $row)
      { $table->addRow();
       $table->addCell(12000, $fancyTableCellStyle)->addText($row["sub_name"], $fancyTableFontStyle);
       $table->addCell(2000, $fancyTableCellStyle)->addText($row["vnutr"], $fancyTableFontStyle);
+      $table->addCell(2000, $fancyTableCellStyle)->addText($row["cabinet"], $fancyTableFontStyle);
     }
   }
   // $sectionOutUnit->addText("EndTableUnit", $fancyTableStyle);
