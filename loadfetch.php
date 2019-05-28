@@ -31,7 +31,7 @@ if (is_numeric($query)) {
 else
 {
 
-  $result=R::getAll( 'SELECT * FROM '.$tablename.' ORDER BY id LIMIT 100');
+  $result=R::getAll( 'SELECT * FROM '.$tablename.' ORDER BY id LIMIT 200');
   $count=R::count($tablename);
 }
 

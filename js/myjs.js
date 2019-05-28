@@ -749,7 +749,7 @@ $(document).on('click', '.data-name', function(){
 function catalogEdit(page)
 { 
   $('#container_m').html("");
-  header='Редактировать справочник';
+  header='<a href="#" data-www="redaktorCatalog" onclick="catalogEdit(1)" class="headerPage"><h4>Редактировать справочник</h4></a>';
   // '<nav class="navbar navbar-default">\
   // <div class="container-fluid">\
   // <div class="navbar-header">\
