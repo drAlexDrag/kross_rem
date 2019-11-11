@@ -74,23 +74,23 @@ function inactivityTime() {
 // console.log(isCyrillic('P2')); //t
 // console.log(isCyrillic('Р2')); //f
 
-setInterval(bidAlert, 600000);
-function bidAlert() {
-  $.ajax({
-    url: "countbid.php",
-    cache: false,
-    dataType:"html",
-    success: function(data){
-      if (data!=0) {
-        $('#bidAlert').text(data);
-            // $('#myBidAlert').modal('show');
-            alertoverlay('<div class="alert alert-info">\
-              В наличии имеются <span class="label label-danger" id="bidAlert">'+data+'</span>\
-              заявки</strong> на ремонт телефона');
-          }
-        }
-      });
-}
+// setInterval(bidAlert, 600000);
+// function bidAlert() {
+//   $.ajax({
+//     url: "countbid.php",
+//     cache: false,
+//     dataType:"html",
+//     success: function(data){
+//       if (data!=0) {
+//         $('#bidAlert').text(data);
+//             // $('#myBidAlert').modal('show');
+//             alertoverlay('<div class="alert alert-info">\
+//               В наличии имеются <span class="label label-danger" id="bidAlert">'+data+'</span>\
+//               заявки</strong> на ремонт телефона');
+//           }
+//         }
+//       });
+// }
 
 //Pagination pagination.php
 $(document).on('click', 'li.page-item, a.page-link',function(){

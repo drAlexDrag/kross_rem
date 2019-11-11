@@ -1,4 +1,5 @@
 <div id='dataCrudModal' class='modal fade'>
+<!-- Форма редактирования данных-->
   <div class='modal-dialog' style='position: relative; width: 95%; margin: 10px;'>
    <div class='modal-content'>
     <div class='modal-header'>
