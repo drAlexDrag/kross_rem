@@ -54,6 +54,7 @@ $("#asd a")
              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-phone-alt"></span></a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">По номерам</li>
+                <li><a href="#" onclick="freenumber('number')"><span>Свободные номера</span></a></li>
                 <li><a href="#" onclick="number('number')"><span>Номера Внутренние</span></a></li>
                 <li><a href="#" onclick="number('city')"><span>Номера Городские</span></a></li>
                 <!-- <li><a href="#" onclick="catalogFreeNumber()"><span>Свободные номера</span></a></li> -->
