@@ -1335,6 +1335,29 @@ function number(phonetype) {
    }
  });
 }
+function freenumber(phonetype) {
+   header='prosmotr-svobodnih-nomerov';
+  $('#container_k').html("");
+  $("#container_m").html("");
+  $("#container_p").html("");
+  $("#topnav_right").html('');
+  // $('#top_header_left').html("");
+  console.log("Таблица : "+phonetype);
+  console.log("Просмотр свободных номеров");
+  $.ajax({
+    url:"free_number.php",
+    method:"POST",
+    data:{phonetype:phonetype},
+    success:function(data){
+     // $('#poisk').html(data);
+     $('#header_area').html(header);
+     $('#poisk').html("");
+     $('#container_p').html(data);
+
+     // numberlive();
+   }
+ });
+}
 
 function numberlive() {
   var x = document.getElementById("numberli");
